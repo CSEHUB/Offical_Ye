@@ -9,7 +9,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         var config = {
-            apiKey: "",
+            apiKey: "AIzaSyAw8bha316J7zLwz-JN2GaUp3w8RioRxP0",
             authDomain: "csehub-420.firebaseapp.com",
             databaseURL: "https://csehub-420.firebaseio.com",
             projectId: "csehub-420",
@@ -19,7 +19,7 @@ class Login extends Component {
         firebase.initializeApp(config);
 
         var uiConfig = {
-            signInSuccessUrl: '<url-to-redirect-to-on-success>',
+            signInSuccessUrl: '/home',
             signInOptions: [
                 // Leave the lines as is for the providers you want to offer your users.
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -40,7 +40,7 @@ class Login extends Component {
     }
     render(){
         return (<dev id="firebaseui-auth-container"></dev>);
-  }
+    }
 }
 
 export default Login;

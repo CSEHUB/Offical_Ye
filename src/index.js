@@ -1,33 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './Login';
+import Home from './Home';
 import {App, Widget1} from './App';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
-
-var courses = ['CSE100', 'CSE110', 'CSE20', 'CSE30'];
-
-ReactDOM.render(<Login />, document.getElementById('top'));
-registerServiceWorker();
-
-
-function addWidget(param) {
-    {/* This removes any widgets that may be from a different class */}
-    ReactDOM.unmountComponentAtNode(document.getElementById('bottom'));
-
-    {/* Render the course widgets */}
-    ReactDOM.render(<Widget1 name={param}></Widget1>, document.getElementById('bottom'));
-}
 
 
 ReactDOM.render(
-    <div className="container-fluid">
-        <div className="row">
-            {courses.map((courseTitle, arrayIndex) => {
-                return (
-                    <button key={arrayIndex} className="Button"
-                            onClick={addWidget.bind(this, courseTitle)}>{courseTitle}</button>
-                )
-            })}
-        </div>
-    </div>, document.getElementById('buttons'));
+<Router>
+    <div>
+        <Route exact path="/" component = {Login}/>
+    </div>
+</Router>, document.getElementById('bottom')
+);
+
+
+ReactDOM.render(<Home />, document.getElementById('buttons'));
+
+
+
+
+registerServiceWorker();
