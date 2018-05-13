@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './Login';
 import Home from './Home';
-import {App, Widget1} from './App';
+import {Header, Widget1} from './Header';
 import {
     BrowserRouter as Router,
     Route,

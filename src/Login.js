@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 import '../node_modules/firebaseui/dist/firebaseui.css';

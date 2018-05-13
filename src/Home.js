@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './Login';
-import {App, Widget1} from './App';
+import {Header, Widget1} from './Header';
+import {SideMenu} from "./SideMenu";
 import registerServiceWorker from './registerServiceWorker';
 import {
     BrowserRouter as Router,
@@ -24,7 +25,8 @@ function addWidget(param) {
 class Home extends Component {
     constructor(props) {
         super(props);
-        ReactDOM.render(<App />, document.getElementById('top'));
+        ReactDOM.render(<Header />, document.getElementById('top'));
+        ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
 
 
     }
