@@ -22,7 +22,7 @@ function addWidget(param) {
     ReactDOM.render(<Widget1 name={param}></Widget1>, document.getElementById('bottom'));
 }
 
-class Home extends Component {
+class ButtonPanel extends Component {
     constructor(props) {
         super(props);
         ReactDOM.render(<Header />, document.getElementById('top'));
@@ -51,6 +51,6 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default ButtonPanel;
 
 
