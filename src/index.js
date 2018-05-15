@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './Login';
-import Home from './Home';
 import {Header, Widget1} from './Header';
 import {
     BrowserRouter as Router,
@@ -10,6 +9,7 @@ import {
     Link
 } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
+import ButtonPanel from "./ButtonPanel";
 
 
 ReactDOM.render(
@@ -21,7 +21,7 @@ ReactDOM.render(
 );
 
 
-ReactDOM.render(<Home />, document.getElementById('buttons'));
+ReactDOM.render(<ButtonPanel />, document.getElementById('buttons'));
 
 
 
