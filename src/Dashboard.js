@@ -22,19 +22,18 @@ function addWidget(param) {
     ReactDOM.render(<Widget1 name={param}></Widget1>, document.getElementById('bottom'));
 }
 
-class ButtonPanel extends Component {
+class Dashboard extends Component {
     constructor(props) {
         super(props);
-        ReactDOM.render(<Header />, document.getElementById('top'));
+        ReactDOM.render(<Header />, document.getElementById('topNav'));
         ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
-
 
     }
     render(){
         return(
         <Router>
             <div>
-        <Route exact path="/home" render = {() => (
+        <Route exact path="/dashboard" render = {() => (
             <div className="container-fluid">
             <div className="row">
                 {courses.map((courseTitle, arrayIndex) => {
@@ -51,6 +50,6 @@ class ButtonPanel extends Component {
     }
 }
 
-export default ButtonPanel;
+export default Dashboard;
 
 

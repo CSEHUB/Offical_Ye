@@ -18,7 +18,7 @@ class Login extends Component {
         firebase.initializeApp(config);
 
         var uiConfig = {
-            signInSuccessUrl: '/home',
+            signInSuccessUrl: '/dashboard',
             signInOptions: [
                 // Leave the lines as is for the providers you want to offer your users.
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -38,7 +38,13 @@ class Login extends Component {
         ui.start('#firebaseui-auth-container', uiConfig);
     }
     render(){
-        return (<dev id="firebaseui-auth-container"></dev>);
+        return (
+           <div>
+            <div className="centerWrapper">
+            <dev className="full-w-h" id="firebaseui-auth-container"></dev>
+            </div>
+           </div>
+        );
     }
 }
 

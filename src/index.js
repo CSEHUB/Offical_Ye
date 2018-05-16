@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './Login';
+import {Homepage} from './Homepage'
 import {Header, Widget1} from './Header';
 import {
     BrowserRouter as Router,
@@ -9,21 +10,38 @@ import {
     Link
 } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
-import ButtonPanel from "./ButtonPanel";
+import Dashboard from "./Dashboard";
 
-
+{/* 1.) Initially Load homepage*/}
 ReactDOM.render(
 <Router>
     <div>
-        <Route exact path="/" component = {Login}/>
+        <Route exact path="/" component = {Homepage}/>
     </div>
-</Router>, document.getElementById('bottom')
+</Router>, document.getElementById('homepage')
 );
 
 
-ReactDOM.render(<ButtonPanel />, document.getElementById('buttons'));
+{/* 2.) Load login screen*/}
+ReactDOM.render(
+    <Router>
+        <div>
+            <Route exact path="/login" component = {Login}/>
+        </div>
+    </Router>, document.getElementById('signin')
+);
 
 
+{/* 3.) Load dashboard*/}
+ReactDOM.render(
+    <Router>
+        <div>
+            <Route exact path="/dashboard" component = {Dashboard}/>
+        </div>
+
+
+    </Router>, document.getElementById('bottom')
+);
 
 
 registerServiceWorker();

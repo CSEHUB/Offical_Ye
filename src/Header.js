@@ -22,7 +22,7 @@ export const Header = () => {
                     </form>
                 </div>
                 <div className="settingsIconMenu"><i className="fas fa-cog"></i></div>
-                <div>Google Photo <br></br>Account</div>
+                <div>Google Photo Hello <br></br>Account</div>
             </div>
         </nav>
 
