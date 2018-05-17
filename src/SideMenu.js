@@ -19,28 +19,32 @@ class SideMenu extends Component {
     render(){
         return(
             <div className="container-fluid">
-            <Router>
-        <nav className="menu-side">
-            <ul className="menu-side-list">
-                <li className="menu-main-item">Workspaces <div className="addWorkspace ml-auto">+</div></li>
+                <Router>
+                    <nav className="menu-side">
+                        <ul className="menu-side-list">
+                            <li className="menu-main-item"><div className="menu-icons"><i className="fas fa-th-large"></i></div>Workspaces <div className="addWorkspace ml-auto" data-toggle="modal" data-target="#modal-addWebsite">+</div></li>
 
-                {/* We need to loop data and populate this format with course name in them */}
-                <li><NavLink to="/course-1" className="menu-item mih" activeClassName="activeMenuItem">Course 1</NavLink></li>
-                <li><NavLink to="/course-2" className="menu-item mih" activeClassName="activeMenuItem">Course 2</NavLink></li>
-                <li><NavLink to="/course-3" className="menu-item mih" activeClassName="activeMenuItem">Course 3</NavLink></li>
-                <li><NavLink to="/course-4" className="menu-item mih" activeClassName="activeMenuItem">Course 4</NavLink></li>
+                            {/* Button trigger modal */}
 
-                {/* Lower portion of side menu */}
-                <br></br>
-                <div className="border"></div>
-                <br></br>
+                            {/* We need to loop data and populate this format with course name in them */}
+                            <li><NavLink to="/course-1" className="menu-item mih" activeClassName="activeMenuItem" >Course 1</NavLink></li>
+                            <li><NavLink to="/course-2" className="menu-item mih" activeClassName="activeMenuItem">Course 2</NavLink></li>
+                            <li><NavLink to="/course-3" className="menu-item mih" activeClassName="activeMenuItem">Course 3</NavLink></li>
+                            <li><NavLink to="/course-4" className="menu-item mih" activeClassName="activeMenuItem">Course 4</NavLink></li>
 
-                <li><NavLink to="/settings" className="menu-main-item mih" activeClassName="activeMenuItem">Settings</NavLink></li>
-                <li><NavLink to="/help" className="menu-main-item mih" activeClassName="activeMenuItem">Help</NavLink></li>
-            </ul>
-        </nav>
-            </Router>
-        </div>
+                            {/* Lower portion of side menu */}
+                            <br></br>
+                            <br></br>
+                            <div className="border"></div>
+                            <br></br>
+
+                            <li><NavLink to="/app/settings" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-cog"></i></div>Settings</NavLink></li>
+                            <li><NavLink to="/help" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-question"></i></div>Help</NavLink></li>
+                        </ul>
+                    </nav>
+                </Router>
+            </div>
+
         );
     }
 }
