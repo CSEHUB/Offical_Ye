@@ -9,7 +9,6 @@ import {
     Link
 } from 'react-router-dom'
 
-
 {/* Used for image styling in CSS */}
 var backgroundImg = {
     backgroundImage: 'url(' + bkImg + ')'
@@ -21,11 +20,13 @@ export const Homepage = () => {
         <div className="container-fluid">
             <section>
             <div className="row">
+                <div className="col-md-12">
                 <div style={backgroundImg} className="hp-background">
                     <div className="centerWrapper">
-                        <div>THIS IS HOMEPAGE</div>
-                        <a href={`./login`}><button type="button" class="btn btn-primary">Login</button></a>
+                        <div>Welcome to CSE HUB</div>
+                        <a href={`./login`}><button type="button" class="home-btn btn btn-primary">Login</button></a>
                     </div>
+                </div>
                 </div>
             </div>
             </section>

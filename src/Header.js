@@ -1,28 +1,33 @@
 import './App.css'
 import logo from './Logo.png'
+import googlePhoto from './testGooglePhoto.jpeg'
 import Widget from './components/Widget.js';
 import React from 'react';
 
 export const Header = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-light ">
-            <button className="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a className="navbar-nav mr-auto" href="/"><img id="Logo" src={logo}/></a>
-
-                <div className="floatRight">
-                    <form className="form-inline my-2 my-lg-0">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search"
-                               aria-label="Search"/>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+        <nav className="navBar">
+            <div className="row">
+                {/* Logo portion of Nav, to match sidebar */}
+                <div className="col-md-2">
+                    <div className="mr-auto form-inline topNavLogoSearchContainer">
+                        <a className="navbar-nav" href="/"><img id="Logo" src={logo}/></a>
+                    </div>
                 </div>
-                <div className="settingsIconMenu"><i className="fas fa-cog"></i></div>
-                <div>Google Photo Hello <br></br>Account</div>
+                {/* Nav - Everything to right of logo */}
+                <div className="col-md-10">
+                    <div className="form-inline topNavLogoSearchContainer">
+                        <form className="form-inline my-2 my-lg-0 topNavSearch mr-auto">
+                            <input className="form-control mr-sm-2 topNavInput" type="search" placeholder="Search"
+                               aria-label="Search"/>
+                            <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                        <div className="floatRight form-inline">
+                            <div className="IconMenu"><i className="far fa-bell"></i></div>
+                            <div className="googlePhotoWrapper"><img class="googlePhoto" src={googlePhoto}/></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
 

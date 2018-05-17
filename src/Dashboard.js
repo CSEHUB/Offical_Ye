@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './Login';
 import {Header, Widget1} from './Header';
-import {SideMenu} from "./SideMenu";
+import SideMenu from "./SideMenu";
 import registerServiceWorker from './registerServiceWorker';
 import {
     BrowserRouter as Router,
@@ -11,6 +11,8 @@ import {
     Link
 } from 'react-router-dom'
 import firebaseui from "firebaseui";
+
+
 
 var courses = ['CSE100', 'CSE110', 'CSE20', 'CSE30'];
 
