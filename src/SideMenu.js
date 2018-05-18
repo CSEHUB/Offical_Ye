@@ -1,6 +1,7 @@
 import './App.css'
 import logo from './Logo.png'
 import Widget from './components/Widget.js';
+import {Header, Widget1} from './Header';
 import React, {Component} from 'react';
 import ReactDOM from "react-dom";
 import {
@@ -10,7 +11,15 @@ import {
     NavLink
 } from 'react-router-dom'
 
+var courses = ['CSE100', 'CSE110', 'CSE20', 'CSE30'];
 
+function addWidget(param) {
+    {/* This removes any widgets that may be from a different class */}
+    ReactDOM.unmountComponentAtNode(document.getElementById('bottom'));
+
+    {/* Render the course widgets */}
+    ReactDOM.render(<Widget1 name={param}></Widget1>, document.getElementById('bottom'));
+}
 
 class SideMenu extends Component {
     constructor(props) {
@@ -27,10 +36,12 @@ class SideMenu extends Component {
                             {/* Button trigger modal */}
 
                             {/* We need to loop data and populate this format with course name in them */}
-                            <li><NavLink to="/course-1" className="menu-item mih" activeClassName="activeMenuItem" >Course 1</NavLink></li>
-                            <li><NavLink to="/course-2" className="menu-item mih" activeClassName="activeMenuItem">Course 2</NavLink></li>
-                            <li><NavLink to="/course-3" className="menu-item mih" activeClassName="activeMenuItem">Course 3</NavLink></li>
-                            <li><NavLink to="/course-4" className="menu-item mih" activeClassName="activeMenuItem">Course 4</NavLink></li>
+
+                            {courses.map((courseTitle, arrayIndex) => {
+                                return (
+                                    <li onClick={addWidget.bind(this, courseTitle)}><NavLink to={courseTitle} className="menu-item mih" activeClassName="activeMenuItem" >{courseTitle}</NavLink></li>
+                                )
+                            })}
 
                             {/* Lower portion of side menu */}
                             <br></br>
