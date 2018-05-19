@@ -1,21 +1,87 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
+import 'firebase/database';
 import '../node_modules/firebaseui/dist/firebaseui.css';
+import {FIREBASE_CONFIG} from "./config";
 //import Form from './components/Form.js'
+
+var app = firebase.initializeApp(FIREBASE_CONFIG);
+
+firebase.auth().onAuthStateChanged( user => {
+    if (user) {
+        // If user state changes and 'user' exists, check Firebase Database for user
+        const userReference = app.database().ref(`users/${user.uid}`);
+        userReference.once('value', snapshot => {
+            if (!snapshot.val()) {
+                // User does not exist, create user entry
+                userReference.set([{
+                    course: "CSE 110",
+                    widgets: [{
+                        "id": 0,
+                        "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                        "site": "www.google.com"
+                    },
+                        {
+                            "id": 0,
+                            "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                            "site": "www.google.com"
+                        },
+                        {
+                            "id": 0,
+                            "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                            "site": "www.google.com"
+                        }]
+                },
+
+                        {
+                            course: "CSE 110",
+                            widgets: [{
+                                "id": 0,
+                                "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                                "site": "www.google.com"
+                            },
+                                {
+                                    "id": 0,
+                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                                    "site": "www.google.com"
+                                },
+                                {
+                                    "id": 0,
+                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                                    "site": "www.google.com"
+                                }]
+                        },
+                        {
+                            course: "CSE 110",
+                            widgets: [{
+                                "id": 0,
+                                "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                                "site": "www.google.com"
+                            },
+                                {
+                                    "id": 0,
+                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                                    "site": "www.google.com"
+                                },
+                                {
+                                    "id": 0,
+                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
+                                    "site": "www.google.com"
+                                }]
+                        }]
+
+                    );
+            }
+        });
+    }
+});
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        var config = {
-            apiKey: "AIzaSyAw8bha316J7zLwz-JN2GaUp3w8RioRxP0",
-            authDomain: "csehub-420.firebaseapp.com",
-            databaseURL: "https://csehub-420.firebaseio.com",
-            projectId: "csehub-420",
-            storageBucket: "csehub-420.appspot.com",
-            messagingSenderId: "719021972711"
-        };
-        firebase.initializeApp(config);
+
+       // firebase.initializeApp(FIREBASE_CONFIG);
 
         var uiConfig = {
             signInSuccessUrl: '/dashboard',
