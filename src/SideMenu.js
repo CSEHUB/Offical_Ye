@@ -1,6 +1,6 @@
 import './App.css'
 import logo from './Logo.png'
-import Widget from './components/Widget.js';
+import Widget from './Widget.js';
 import {Header, Widget1} from './Header';
 import React, {Component} from 'react';
 import ReactDOM from "react-dom";

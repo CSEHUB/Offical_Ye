@@ -1,7 +1,7 @@
 import './App.css'
 import logo from './Logo.png'
 import googlePhoto from './testGooglePhoto.jpeg'
-import Widget from './components/Widget.js';
+import Widget from './Widget.js';
 import React from 'react';
 
 export const Header = () => {
