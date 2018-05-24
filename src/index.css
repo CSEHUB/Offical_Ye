@@ -241,11 +241,15 @@ li{
 }
 
 /* Homepage */
-.hp-background{
-    height:800px;
+.jumbotron.hp-background{
     width:100%;
     background-repeat: no-repeat;
     background-size: 100%;
+    padding: 5rem 2rem 35.5rem 2rem;
+}
+
+.bk-fixed{
+    background-attachment: fixed;
 }
 
 .centerWrapper{
@@ -259,3 +263,87 @@ li{
 
 
 
+.display-3 {
+    color: #f1f1f1;
+}
+
+.homedashImg{
+    width: 85%;
+}
+
+
+.star {
+    visibility: hidden;
+}
+
+.fadeIn {
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+
+    -webkit-animation: animat_show 9.8s;
+    animation: animat_show 9.8s;
+    visibility: visible !important;
+}
+
+@-webkit-keyframes animat_show{
+    0%{opacity:0}
+    100%{opacity:1}
+}
+
+.mt65{
+    margin-top: 65px;
+}
+
+.pt65 {
+    padding-top:65px;
+}
+
+.pt50 {
+    padding-top:50px;
+}
+
+.pt45 {
+    padding-top:45px;
+}
+
+.pt30 {
+    padding-top:30px;
+}
+
+.pt20 {
+    padding-top:20px;
+}
+
+
+.profilePhoto {
+    width: 75%;
+    border-radius: 301px;
+    height: 183px;
+    display: block;
+    margin: auto;
+    padding: 15px;
+}
+
+
+.h2, h2 {
+    font-size: 3rem;
+}
+
+.heartLogo{
+    color: #e21212;
+}
+
+.b-space{
+    border:0;
+    padding:30px;
+    margin:30px;
+    height:0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(255,255,255,0.3);
+    width:75%;
+    margin:0px auto;
+    clear:both;
+}
