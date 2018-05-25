@@ -7,6 +7,7 @@ body{
     height: 100%;
     overflow: auto;
     font-family: 'Open Sans', sans-serif;
+    color: #535353 !important;
 }
 
 a {
@@ -262,6 +263,31 @@ li{
 
 
 
+.home-btn:hover{
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    background-color: #2391E6;
+    transition: all .3s ease-out;
+    background-color: #09adf5 !important;
+}
+
+.home-btn{
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    color:white !important;
+    background-color: #009de2 !important;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-size: 19px;
+}
+
+.home-btn:focus, .home-btn:active, .home-btn:visited {
+    border-style: outset;
+    border: none;
+    outline: none;
+}
+
+.c-white{
+    color:white !important;
+}
 
 .display-3 {
     color: #f1f1f1;
@@ -271,21 +297,27 @@ li{
     width: 85%;
 }
 
+.homedashImg-h{
+    height:826px;
+}
 
 .star {
     visibility: hidden;
 }
 
-.fadeIn {
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 2s; /* Firefox < 16 */
-    -ms-animation: fadein 2s; /* Internet Explorer */
-    -o-animation: fadein 2s; /* Opera < 12.1 */
-    animation: fadein 2s;
+.dis-none {
 
+    display:none;
+    /*
+    -webkit-animation: fadein 2s;
+    -moz-animation: fadein 2s;
+    -ms-animation: fadein 2s;
+    -o-animation: fadein 2s;
+    animation: fadein 2s;
     -webkit-animation: animat_show 9.8s;
     animation: animat_show 9.8s;
     visibility: visible !important;
+    */
 }
 
 @-webkit-keyframes animat_show{
@@ -317,6 +349,14 @@ li{
     padding-top:20px;
 }
 
+.p10{
+    padding:10px;
+}
+
+.pos-ab {
+    position: absolute;
+    border: none;
+}
 
 .profilePhoto {
     width: 75%;
@@ -338,7 +378,6 @@ li{
 
 .b-space{
     border:0;
-    padding:30px;
     margin:30px;
     height:0;
     border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -346,4 +385,13 @@ li{
     width:75%;
     margin:0px auto;
     clear:both;
+}
+
+
+.modal-dialog {
+    max-width: 600px !important;
+}
+
+.float-right{
+    float:right;
 }

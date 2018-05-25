@@ -67,10 +67,10 @@
 
   <script>
       $(window).scroll(function() {
-          if ($(this).scrollTop()> 300) {
-              $('#dashboardEx').fadeIn();
+          if ($(this).scrollTop()> 580) {
+              $('#dashboardEx').fadeIn(700, function () {});
           } else {
-              $('#dashboardEx').fadeOut();
+              $('#dashboardEx').fadeOut("slow", function () {});
           }
       });
   </script>
