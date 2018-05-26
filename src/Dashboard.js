@@ -13,9 +13,6 @@ import {
     Link
 } from 'react-router-dom'
 
-
-var email;
-
 function makeWorkspace() {
     //var app = firebase.initializeApp(FIREBASE_CONFIG);
     var course = document.getElementById("course").value;
@@ -74,7 +71,7 @@ class Dashboard extends Component {
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel
                                     </button>
-                                    <button onClick={makeWorkspace} type="button" className="btn btn-primary">Save Course</button>
+                                    <button onClick={makeWorkspace} type="button" className="btn btn-primary" data-dismiss="modal">>Save Course</button>
                                 </div>
                             </div>
                         </div>
