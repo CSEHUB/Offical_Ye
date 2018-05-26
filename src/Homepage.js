@@ -1,9 +1,9 @@
 import './App.css'
-import logo from './Logo.png'
-import bkImg from './homepageGeisel.jpg'
-import dashImg from './dashboard-sample.png'
-import teamImg from './teamPhoto.jpg'
-import techLogosImg from './allLogos.png'
+import logo from './res/images/Logo.png'
+import bkImg from './res/images/homepageGeisel.jpg'
+import dashImg from './res/images/dashboard-sample.png'
+import teamImg from './res/images/teamPhoto.jpg'
+import techLogosImg from './res/images/allLogos.png'
 import Widget from './Widget.js';
 import React from 'react';
 import {

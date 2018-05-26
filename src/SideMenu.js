@@ -1,5 +1,5 @@
 import './App.css'
-import logo from './Logo.png'
+import logo from './res/images/Logo.png'
 import Widget from './Widget.js';
 import {Header, Widget1} from './Header';
 import React, {Component} from 'react';
@@ -62,4 +62,3 @@ class SideMenu extends Component {
 }
 
 export default SideMenu;
-
