@@ -1,6 +1,6 @@
 import './App.css'
-import logo from './Logo.png'
-import googlePhoto from './testGooglePhoto.jpeg'
+import logo from './res/images/Logo.png'
+import googlePhoto from './res/images/testGooglePhoto.jpeg'
 import Widget from './Widget.js';
 import React from 'react';
 

@@ -5,11 +5,11 @@ import {
     Link,
     NavLink
 } from 'react-router-dom'
-import logo from './Logo.png'
-import gradesourceLogo from './GradeSource_logo.png'
-import piazzaLogo from './Piazza_logo.png'
-import autograderLogo from './Autograder_Logo.png'
-import gradescopeLogo from './Gradescope_logo.png'
+import logo from './res/images/Logo.png'
+import gradesourceLogo from './res/images/GradeSource_logo.png'
+import piazzaLogo from './res/images/Piazza_logo.png'
+import autograderLogo from './res/images/Autograder_Logo.png'
+import gradescopeLogo from './res/images/Gradescope_logo.png'
 
 
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
