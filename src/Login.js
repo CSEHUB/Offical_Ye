@@ -12,66 +12,15 @@ firebase.auth().onAuthStateChanged( user => {
     if (user) {
         // If user state changes and 'user' exists, check Firebase Database for user
         const userReference = app.database().ref(`users/${user.uid}`);
+
         userReference.once('value', snapshot => {
             if (!snapshot.val()) {
                 // User does not exist, create user entry
-                userReference.set([{
-                    course: "CSE 110",
-                    widgets: [{
-                        "id": 0,
-                        "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                        "site": "www.google.com"
-                    },
-                        {
-                            "id": 0,
-                            "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                            "site": "www.google.com"
-                        },
-                        {
-                            "id": 0,
-                            "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                            "site": "www.google.com"
-                        }]
-                },
-
-                        {
-                            course: "CSE 110",
-                            widgets: [{
-                                "id": 0,
-                                "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                "site": "www.google.com"
-                            },
-                                {
-                                    "id": 0,
-                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                    "site": "www.google.com"
-                                },
-                                {
-                                    "id": 0,
-                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                    "site": "www.google.com"
-                                }]
-                        },
-                        {
-                            course: "CSE 110",
-                            widgets: [{
-                                "id": 0,
-                                "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                "site": "www.google.com"
-                            },
-                                {
-                                    "id": 0,
-                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                    "site": "www.google.com"
-                                },
-                                {
-                                    "id": 0,
-                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                    "site": "www.google.com"
-                                }]
-                        }]
-
-                    );
+                userReference.set({
+                    "email":firebase.auth().currentUser.email,
+                    "last_workspace":'',
+                    "workspace":''
+                });
             }
         });
     }
