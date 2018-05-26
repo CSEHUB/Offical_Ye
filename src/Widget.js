@@ -50,37 +50,60 @@ class Widget extends Component {
 
         this.state = {
             courses: ['CSE100', 'CSE110', 'CSE20', 'CSE30', 'CSE 140'],
-            urls: ['http://www.gradesource.com/reports/3586/29656/index.html', 'http://www.gradesource.com/reports/7/29889/index.html', 'http://www.gradesource.com/reports/346/29648/index.html', 'http://www.gradesource.com/reports/288/29652/index.html'],
+            urls: ['https://piazza.com/', 'http://www.gradesource.com/reports/7/29889/index.html', 'https://gradescope.com/embed/', 'https://autograder.ucsd.edu/', 'https://www.youtube.com/embed/dQw4w9WgXcQ'],
             userName: [1,2,3,4],
             password: [1,2,3,4],
-            position: [1,2,3,4]
+            position: [1,2,3,4],
+            website: ['Piazza', 'Gradescope', 'Gradesource', 'Autograder', 'Other'],
+            widgetID: ['id0', 'id1', 'id2', 'id3', 'id4']
         }
 
     }
 
     render(){
         return(
+
             <div className="container-fluid">
                 <div className="row">
                     {this.state.courses.map((courseTitle, arrayIndex) => {
                         return (
-
-                            <div className="Widget">
-                                <div id="e" draggable="true" className="w-container">
-                                    <div className="w-top">
-                                    </div>
+                    <div className="col-md-4  w-container-out">
+                            <div className="w-top">
+                                <div className="w-top-l">[X]</div>
+                                <div className="w-top-r">[]</div>
+                            </div>
+                                <div id="e" draggable="true" className="w-container" data-toggle="modal" data-target={'#' + this.state.widgetID[arrayIndex]}>
+                                    <div key={arrayIndex}>{this.state.website[arrayIndex]}</div>
                                     <div key={arrayIndex}>{nam}</div>
                                     <div key={arrayIndex}>{course.name}</div>
                                     <div key={arrayIndex}>{course.grades[0]}</div>
                                     <div key={arrayIndex}>{course.grades[1]}</div>
                                     <div key={arrayIndex}>{course.grades[2]}</div>
-                                </div>
                             </div>
+                    </div>
                         )
                     })}
 
                 </div>
+
+
+        {this.state.courses.map((courseTitle1, Index) => {
+            return (
+                <div key={Index} className="modal fade" id={this.state.widgetID[Index]} tabIndex="-1" role="dialog"
+                     aria-labelledby={this.state.widgetID[Index]}  aria-hidden="true">
+                    <div className="modal-dialog widget-modal modal-dialog-centered" role="document">
+                        <div className="modal-content widget-modal-h">
+                            <div className="modal-body widget-modal-h">
+                                <iframe className="modal-full" src={this.state.urls[Index]}
+                                        frameBorder="0" allow="autoplay; encrypted-media"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        })}
             </div>
+
         );
     }
 }
