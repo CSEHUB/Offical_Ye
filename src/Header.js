@@ -20,7 +20,7 @@ export const Header = () => {
                         <form className="form-inline my-2 my-lg-0 topNavSearch mr-auto">
                             <input className="form-control mr-sm-2 topNavInput" type="search" placeholder="Search"
                                aria-label="Search"/>
-                            <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                            <button className="btn-header btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                         </form>
                         <div className="floatRight form-inline">
                             <div className="IconMenu"><i className="far fa-bell"></i></div>

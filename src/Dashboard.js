@@ -23,6 +23,7 @@ class Dashboard extends Component {
         return(
             <Router>
                 <div>
+
                     {/* Add Website Modal */}
                     <div className="modal fade" id="modal-addWebsite" tabIndex="-1" role="dialog"
                          aria-labelledby="AddWebsite" aria-hidden="true">
@@ -38,33 +39,15 @@ class Dashboard extends Component {
 
                                     <form>
                                         <div className="form-group">
-                                            <label htmlFor="exampleFormControlSelect1">Website Type: </label>
-                                            <select className="form-control" id="exampleFormControlSelect1">
-                                                <option>GradeSource</option>
-                                                <option>Piazza</option>
-                                                <option>GradeScope</option>
-                                                <option>AutoGrader</option>
-                                                <option>Class Website</option>
-                                                <option>Other</option>
-                                            </select>
-                                        </div>
-
-                                        <div className="form-group">
                                             <label htmlFor="exampleFormControlInput1">Course Title: </label>
                                             <input type="text" className="form-control" id="exampleFormControlInput1"
                                                    placeholder="CSE 105"/>
                                         </div>
 
                                         <div className="form-group">
-                                            <label htmlFor="exampleFormControlInput1">Username: </label>
+                                            <label htmlFor="exampleFormControlInput1">Course URL: </label>
                                             <input type="text" className="form-control" id="exampleFormControlInput1"
-                                                   placeholder="GaryG@ucsd.edu"/>
-                                        </div>
-
-                                        <div className="form-group">
-                                            <label htmlFor="exampleFormControlInput1">Password: </label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1"
-                                                   placeholder="Gary's-Password"/>
+                                                   placeholder="https://piazza.com/class/jf0nahv4fyb1yp"/>
                                         </div>
 
                                     </form>
@@ -78,8 +61,6 @@ class Dashboard extends Component {
                             </div>
                         </div>
                     </div>
-
-
 
 
 

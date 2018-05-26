@@ -61,16 +61,20 @@ a:hover {
     border-bottom: 1px solid rgba(0,0,0,.12);
 }
 
-.btn{
+
+.btn-header{
     padding: .3rem .75rem;
     border-color: #039ee2;
     color: #039ee2;
+    cursor: pointer;
 }
 
-.btn:hover{
+.btn-header:hover{
     background-color: #039ee2 !important;
     border-color: #039ee2;
 }
+
+
 
 .home-btn{
     background-color: #039ee2 !important;
@@ -105,16 +109,17 @@ a:hover {
 /* --------- Widget Styles ---------- */
 
 .w-container-out{
-    padding: 50px;
+    padding: 45px 45px 0px 45px;
 }
 
 .w-container:hover{
     cursor:pointer !important;
+    box-shadow: 0 1px 3px 0 rgba(61,65,68,0.303), 0 4px 8px 3px rgba(60,64,67,0.150);
 }
 
 .w-container{
-    border:1px solid black;
-    height:200px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.301), 0 1px 3px 1px rgba(60,64,67,0.150);
+    height:250px;
     resize: both;
 
 }
@@ -124,16 +129,46 @@ a:hover {
 }
 
 .w-top{
-    height:32px;
+    height:24px;
     width:100%;
-    background: lightgray;
+    background: white;
+}
+
+.w-container-out:hover .w-top-l{
+    cursor: pointer;
+    display: block !important;
+    -webkit-animation: fadein .3s;
+    -moz-animation: fadein .3s;
+    -ms-animation: fadein .3s;
+    -o-animation: fadein .3s;
+    animation: fadein .3s;
+    -webkit-animation: animat_show .3s;
+    animation: animat_show .3s;
+}
+
+.w-container-out:hover .w-top-r{
+    cursor:pointer;
+    display: block !important;
+    -webkit-animation: fadein .3s;
+    -moz-animation: fadein .3s;
+    -ms-animation: fadein .3s;
+    -o-animation: fadein .3s;
+    animation: fadein .3s;
+    -webkit-animation: animat_show .3s;
+    animation: animat_show .3s;
+}
+
+.top-none{
+    display:none;
 }
 
 .w-top-l{
     float:left;
+    display:none;
 }
 .w-top-r{
-    color:red;
+    float:right;
+    display:none;
 }
 .e-iframe-container{
     padding:10px;
@@ -152,6 +187,19 @@ a:hover {
 
 .widget-modal-h{
     height: 100% !important;
+}
+
+.widgetTitle{
+    padding-top: 64px;
+    padding-bottom: 12px;
+    font-size: 19px;
+}
+
+.widgetLogo{
+    width:65%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 
@@ -217,6 +265,14 @@ li{
     cursor:pointer;
 }
 
+.pad-left-help{
+    padding-left: 5px;
+}
+
+.pad-left-settings{
+    padding-left: 2px;
+}
+
 
 
 
@@ -279,9 +335,6 @@ li{
     vertical-align: middle;
     line-height: 90px;
 }
-
-
-
 
 
 .home-btn:hover{
