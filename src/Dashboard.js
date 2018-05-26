@@ -23,12 +23,13 @@ function makeWorkspace() {
             const userReference = firebase.database().ref(`users/${user.uid}`);
 
              var data = {
+                name:course,
                 widgets:""
              }
 
             var wid = firebase.database().ref('workspaces').push(data).getKey();
 
-            userReference.child("workspace").child(wid).set({name:course});
+            userReference.child("workspace").child(wid).set(course);
         }
     });
 }
@@ -71,7 +72,7 @@ class Dashboard extends Component {
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel
                                     </button>
-                                    <button onClick={makeWorkspace} type="button" className="btn btn-primary" data-dismiss="modal">>Save Course</button>
+                                    <button onClick={makeWorkspace} type="button" className="btn btn-primary" data-dismiss="modal">Save Course</button>
                                 </div>
                             </div>
                         </div>
