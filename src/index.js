@@ -35,22 +35,12 @@ ReactDOM.render(
 
 {/* PROB CAN COMBINE 3 and 4 below if we come up with a smart string instead of dashboard (like app or my) to put after root url*/}
 
-{/* 3.) Load dashboard*/}
-ReactDOM.render(
-    <Router>
-        <div>
-            <Route exact path="/dashboard" component = {Dashboard}/>
-        </div>
-
-    </Router>, document.getElementById('bottom')
-);
-
 
 {/* 4.) Load course on URL refresh/direct link*/}
 ReactDOM.render(
     <Router>
         <div>
-            <Route path='/course' render={(props) => (
+            <Route path='/dashboard' render={(props) => (
                 <Dashboard {...props} />
             )}/>
 

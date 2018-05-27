@@ -39,6 +39,11 @@ export function makeWorkspace() {
 export class Dashboard extends Component {
     constructor(props) {
         super(props);
+
+        ReactDOM.render(<Header />, document.getElementById('topNav'));
+        ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
+        buttons();
+
         console.log(this.props);
         console.log(props.location.pathname);
         //get url
@@ -57,15 +62,12 @@ export class Dashboard extends Component {
             //Load widgets component, passing in that course name as a prop to load it's widgets
             ReactDOM.render(<Widget1 name={courseName}></Widget1>, document.getElementById('bottom'));
         }
-
-        ReactDOM.render(<Header />, document.getElementById('topNav'));
-        ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
-        buttons();
     }
 
     render(){
         return(
-            <Router>
+
+        <Route>
                 <div>
 
                     {/* Add Website Modal */}
@@ -102,8 +104,8 @@ export class Dashboard extends Component {
 
 
                 </div>
-            </Router>
 
+        </Route>
         );
     }
 

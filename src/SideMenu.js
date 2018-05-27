@@ -62,7 +62,7 @@ export class SideMenu extends Component {
 
                             {courses.map((courseTitle, arrayIndex) => {
                                 return (
-                                    <li onClick={addWidget.bind(this, courseTitle)}><NavLink to={"/course/" + courseTitle} className="menu-item mih" activeClassName="activeMenuItem" >{courseTitle}</NavLink></li>
+                                    <li onClick={addWidget.bind(this, courseTitle)}><NavLink to={"/dashboard/course/" + courseTitle} className="menu-item mih" activeClassName="activeMenuItem" >{courseTitle}</NavLink></li>
                                 )
                             })}
 
