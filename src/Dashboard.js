@@ -50,7 +50,7 @@ export class Dashboard extends Component {
         console.log("Page Type: " + pageType);
 
         //if page is equal to a course page, we know that we need to load widgets in the bottom right section
-        if(pageType) {
+        if(pageType == "course") {
             //get course Name (so we know which widgets to load)
             var courseName = pathParts[2];
             console.log("Course: " + courseName);
