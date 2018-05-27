@@ -34,17 +34,40 @@ export function makeWorkspace() {
     });
 }
 
+
+
 export class Dashboard extends Component {
     constructor(props) {
         super(props);
+
         ReactDOM.render(<Header />, document.getElementById('topNav'));
         ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
         buttons();
+
+        console.log(this.props);
+        console.log(props.location.pathname);
+        //get url
+        var path = props.location.pathname;
+        //split url string into array of parts (each part is between /.../)
+        var pathParts = path.split('/');
+        //get first part (which is the page type "ex: dashboard, settings, course, login etc..."
+        var pageType = pathParts[1];
+        console.log("Page Type: " + pageType);
+
+        //if page is equal to a course page, we know that we need to load widgets in the bottom right section
+        if(pageType == "course") {
+            //get course Name (so we know which widgets to load)
+            var courseName = pathParts[2];
+            console.log("Course: " + courseName);
+            //Load widgets component, passing in that course name as a prop to load it's widgets
+            ReactDOM.render(<Widget1 name={courseName}></Widget1>, document.getElementById('bottom'));
+        }
     }
 
     render(){
         return(
-            <Router>
+
+        <Route>
                 <div>
 
                     {/* Add Website Modal */}
@@ -81,8 +104,8 @@ export class Dashboard extends Component {
 
 
                 </div>
-            </Router>
 
+        </Route>
         );
     }
 

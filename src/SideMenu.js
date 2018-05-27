@@ -62,7 +62,7 @@ export class SideMenu extends Component {
 
                             {courses.map((courseTitle, arrayIndex) => {
                                 return (
-                                    <li onClick={addWidget.bind(this, courseTitle)}><NavLink to={"/course/" + courseTitle} className="menu-item mih" activeClassName="activeMenuItem" >{courseTitle}</NavLink></li>
+                                    <li onClick={addWidget.bind(this, courseTitle)}><NavLink to={"/dashboard/course/" + courseTitle} className="menu-item mih" activeClassName="activeMenuItem" >{courseTitle}</NavLink></li>
                                 )
                             })}
 
@@ -74,7 +74,7 @@ export class SideMenu extends Component {
 
                             <li><NavLink to="/app/settings" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-cog"></i></div><span className="pad-left-settings">Settings</span></NavLink></li>
                             <li><NavLink to="/help" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-question"></i></div> <span className="pad-left-help">Help</span></NavLink></li>
-                            <li><NavLink to="/help" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-sign-out-alt"></i></div>Sign out</NavLink></li>
+                            <li><NavLink to="/logout" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-sign-out-alt"></i></div>Sign out</NavLink></li>
                         </ul>
                     </nav>
                 </Router>
