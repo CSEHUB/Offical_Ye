@@ -50,6 +50,8 @@ class Widget extends Component {
         course = CSE100;
 
 
+        this.myRef = React.createRef();
+
 
         this.state = {
             courses: ['CSE100', 'CSE110', 'CSE20', 'CSE30', 'CSE 140'],
@@ -62,6 +64,58 @@ class Widget extends Component {
         }
 
     }
+
+
+
+
+
+    smallWidget = () => {
+        const element = this.myRef.current;
+        console.log(element);
+        const leftDiv = element.parentNode;
+        console.log(leftDiv);
+        const topDiv = leftDiv.parentNode;
+        console.log(topDiv);
+        const outerDiv = topDiv.parentNode;
+        console.log(outerDiv);
+        outerDiv.className = "";
+
+        outerDiv.classList.add('w-container-out');
+        outerDiv.classList.add('col-md-4');
+
+    }
+
+    mediumWidget = () => {
+        const element = this.myRef.current;
+        console.log(element);
+        const leftDiv = element.parentNode;
+        console.log(leftDiv);
+        const topDiv = leftDiv.parentNode;
+        console.log(topDiv);
+        const outerDiv = topDiv.parentNode;
+        console.log(outerDiv);
+        outerDiv.className = "";
+
+        outerDiv.classList.add('w-container-out');
+        outerDiv.classList.add('col-md-8');
+
+    }
+
+    largeWidget = () => {
+        const element = this.myRef.current;
+        console.log(element);
+        const leftDiv = element.parentNode;
+        console.log(leftDiv);
+        const topDiv = leftDiv.parentNode;
+        console.log(topDiv);
+        const outerDiv = topDiv.parentNode;
+        console.log(outerDiv);
+        outerDiv.className = "";
+        outerDiv.classList.add('w-container-out');
+        outerDiv.classList.add('col-md-12');
+    }
+
+
 
 
 
@@ -121,7 +175,7 @@ class Widget extends Component {
                                     <div className="col-md-4  w-container-out">
                                         <div className="w-top">
                                             <div className="w-top-l">[X]</div>
-                                            <div className="w-top-r">[] [ ] [   ]</div>
+                                            <div className="w-top-r"><span onClick={this.smallWidget} ref={this.myRef}>[]</span> <span onClick={this.mediumWidget} ref={this.myRef}>[ ]</span><span onClick={this.largeWidget} ref={this.myRef}>[ ]</span></div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
                                              data-target={'#' + this.state.widgetID[arrayIndex]}>

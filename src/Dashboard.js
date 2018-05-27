@@ -51,7 +51,7 @@ export class Dashboard extends Component {
         //split url string into array of parts (each part is between /.../)
         var pathParts = path.split('/');
         //get first part (which is the page type "ex: dashboard, settings, course, login etc..."
-        var pageType = pathParts[1];
+        var pageType = pathParts[2];
         console.log("Page Type: " + pageType);
 
         //if page is equal to a course page, we know that we need to load widgets in the bottom right section
