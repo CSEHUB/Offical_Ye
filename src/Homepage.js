@@ -6,6 +6,19 @@ import teamImg from './res/images/teamPhoto.jpg'
 import techLogosImg from './res/images/allLogos.png'
 import Widget from './Widget.js';
 import React from 'react';
+
+import lucasProfileImg from './res/images/Members/lucas.jpg'
+import chrisProfileImg from './res/images/Members/chris.jpg'
+import mahibProfileImg from './res/images/Members/mahib.jpg'
+import kevinProfileImg from './res/images/Members/kevin.jpg'
+import shaneProfileImg from './res/images/Members/shane.jpg'
+import jasonProfileImg from './res/images/Members/jason.jpg'
+import ericProfileImg from './res/images/Members/eric.jpg'
+import andrewProfileImg from './res/images/Members/andrew.png'
+import yeProfileImg from './res/images/Members/ye.png'
+import moProfileImg from './res/images/Members/mo.jpg'
+import garyProfileImg from './res/images/Members/gary.jpeg'
+
 import {
     BrowserRouter as Router,
     Route,
@@ -43,9 +56,6 @@ export const Homepage = () => {
                     </div>
                 </div>
 
-
-
-
                     <div className="container">
                         <div className="homedashImg-h">
                             <div className="dis-none" id="dashboardEx">
@@ -71,17 +81,11 @@ export const Homepage = () => {
                         </div>
                     </div>
 
-
-
                 <div style={teamBackgroundImg} className="jumbotron hp-background mt65">
                     <div className="container text-center">
                         <h3 className="display-3">Meet team HUB</h3>
                     </div>
                 </div>
-
-
-
-
 
                 <div className="container">
 
@@ -93,55 +97,65 @@ export const Homepage = () => {
 
                     <div className="row text-center pt20">
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
+                            <img className="profilePhoto" src={lucasProfileImg}/>
                             <h4>Lucas Nathan</h4>
                             <h5>Project Manager</h5>
                         </div>
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>UI Interface Specialist</h4>
+                            <img className="profilePhoto" src={chrisProfileImg}/>
+                            <h4>Chris Synnott</h4>
+                            <h5>User Interface Specialist</h5>
                         </div>
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
+                            <img className="profilePhoto" src={yeProfileImg}/>
+                            <h4>Ye Lin</h4>
                             <h4>Database Specialist</h4>
                         </div>
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>Software Analyst</h4>
+                            <img className="profilePhoto" src={mahibProfileImg}/>
+                            <h4>Mahib Hosain</h4>
+                            <h5>Software Analyst</h5>
                         </div>
                     </div>
 
                     <div className="row text-center pt45">
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>UI Interface Specialist</h4>
+                            <img className="profilePhoto" src={kevinProfileImg}/>
+                            <h4>Kevin Nguyen</h4>
+                            <h5>Software Development Lead</h5>
                         </div>
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>UI Interface Specialist</h4>
+                            <img className="profilePhoto" src={shaneProfileImg}/>
+                            <h4>Shane Nielsen</h4>
+                            <h5>Software Development Lead</h5>
                         </div>
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>UI Interface Specialist</h4>
+                            <img className="profilePhoto" src={andrewProfileImg}/>
+                            <h4>Andrew Sylvester</h4>
+                            <h5>Senior System Analyst</h5>
                         </div>
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>UI Interface Specialist</h4>
+                            <img className="profilePhoto" src={jasonProfileImg}/>
+                            <h4>Jason Kuo</h4>
+                            <h5>Algorithm Specialist</h5>
                         </div>
                     </div>
 
                     <div className="row text-center pt45">
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>UI Interface Specialist</h4>
+                            <img className="profilePhoto" src={moProfileImg}/>
+                            <h4>Mo Rahman</h4>
+                            <h5>Business Analyst</h5>
                         </div>
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>UI Interface Specialist</h4>
+                            <img className="profilePhoto" src={ericProfileImg}/>
+                            <h4>Eric Ping</h4>
+                            <h5>Quality Assurance Lead</h5>
                         </div>
                         <div className="col-md-3">
-                            <img className="profilePhoto" src={bkImg}/>
-                            <h4>Professor</h4>
+                            <img className="profilePhoto" src={garyProfileImg}/>
+                            <h4>Gary Gillespie</h4>
+                            <h5>Professor</h5>
                         </div>
 
                     </div>
