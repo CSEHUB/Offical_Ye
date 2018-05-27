@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {Header, Widget1} from './Header';
-import SideMenu from "./SideMenu";
+import {SideMenu, buttons} from "./SideMenu";
 import {FIREBASE_CONFIG} from "./config";
 import firebase from 'firebase';
 import 'firebase/database';
@@ -13,13 +13,12 @@ import {
     Link
 } from 'react-router-dom'
 
-function makeWorkspace() {
+export function makeWorkspace() {
     //var app = firebase.initializeApp(FIREBASE_CONFIG);
     var course = document.getElementById("course").value;
 
     firebase.auth().onAuthStateChanged( user => {
         if (user) {
-            // If user state changes and 'user' exists, check Firebase Database for user
             const userReference = firebase.database().ref(`users/${user.uid}`);
 
              var data = {
@@ -31,15 +30,16 @@ function makeWorkspace() {
 
             userReference.child("workspace").child(wid).set(course);
         }
+        window.location.reload();
     });
 }
 
-class Dashboard extends Component {
+export class Dashboard extends Component {
     constructor(props) {
         super(props);
         ReactDOM.render(<Header />, document.getElementById('topNav'));
         ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
-
+        buttons();
     }
 
     render(){
@@ -88,6 +88,6 @@ class Dashboard extends Component {
 
 }
 
-export default Dashboard;
+//export default Dashboard;
 
 

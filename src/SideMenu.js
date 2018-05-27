@@ -4,6 +4,8 @@ import Widget from './Widget.js';
 import {Header, Widget1} from './Header';
 import React, {Component} from 'react';
 import ReactDOM from "react-dom";
+import firebase from 'firebase';
+import 'firebase/database';
 import {
     BrowserRouter as Router,
     Route,
@@ -11,7 +13,7 @@ import {
     NavLink
 } from 'react-router-dom'
 
-var courses = ['CSE100', 'CSE110', 'CSE20', 'CSE30'];
+var courses = new Array();
 
 function addWidget(param) {
     {/* This removes any widgets that may be from a different class */}
@@ -20,8 +22,29 @@ function addWidget(param) {
     {/* Render the course widgets */}
     ReactDOM.render(<Widget1 name={param}></Widget1>, document.getElementById('bottom'));
 }
+export function buttons() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            var userId = firebase.auth().currentUser.uid;
+            var getData = firebase.database().ref('/users/' + userId + '/workspace');
 
-class SideMenu extends Component {
+            getData.once('value', function (snapshot) {
+                snapshot.forEach(function (childSnapshot) {
+                    var childData = childSnapshot.val();
+                    courses.push(childData);
+                })
+                ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
+            }, function(error) {
+                // The callback failed.
+                console.error(error);
+            });
+        }
+
+    })
+}
+
+export class SideMenu extends Component {
+
     constructor(props) {
         super(props);
     }
@@ -39,7 +62,7 @@ class SideMenu extends Component {
 
                             {courses.map((courseTitle, arrayIndex) => {
                                 return (
-                                    <li onClick={addWidget.bind(this, courseTitle)}><NavLink to={courseTitle} className="menu-item mih" activeClassName="activeMenuItem" >{courseTitle}</NavLink></li>
+                                    <li onClick={addWidget.bind(this, courseTitle)}><NavLink to={"/course/" + courseTitle} className="menu-item mih" activeClassName="activeMenuItem" >{courseTitle}</NavLink></li>
                                 )
                             })}
 

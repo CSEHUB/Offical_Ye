@@ -10,7 +10,7 @@ import {
     Link
 } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
-import Dashboard from "./Dashboard";
+import {Dashboard} from "./Dashboard";
 
 {/* 1.) Initially Load homepage*/}
 ReactDOM.render(
@@ -37,6 +37,17 @@ ReactDOM.render(
     <Router>
         <div>
             <Route exact path="/dashboard" component = {Dashboard}/>
+        </div>
+
+
+    </Router>, document.getElementById('bottom')
+);
+
+{/* 3.) Load dashboard*/}
+ReactDOM.render(
+    <Router>
+        <div>
+            <Route path="/course" component = {Dashboard}/>
         </div>
 
 
