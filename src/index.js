@@ -46,7 +46,7 @@ ReactDOM.render(
 );
 
 
-{/* 4.) Load course on URL refresh/direct link*/}
+{/* 4.) Load course on URL refresh/direct link
 ReactDOM.render(
     <Router>
         <div>
@@ -57,7 +57,7 @@ ReactDOM.render(
         </div>
     </Router>, document.getElementById('bottom')
 );
-
+*/}
 
 
 
