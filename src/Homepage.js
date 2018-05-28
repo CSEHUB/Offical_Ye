@@ -3,14 +3,16 @@ import logo from './Logo.png'
 import bkImg from './homepageGeisel.jpg'
 import dashImg from './dashboard-sample.png'
 import teamImg from './teamPhoto.jpg'
-import techLogosImg from './allLogos.png'
 import Widget from './Widget.js';
-import React from 'react';
+import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Route,
     Link
 } from 'react-router-dom'
+import firebase from 'firebase';
+import Dashboard from "./Dashboard";
+import techLogosImg from './allLogos.png';
 
 {/* Used for image styling in CSS */}
 var backgroundImg = {
@@ -25,9 +27,54 @@ var noShow = {
     display:'none'
 };
 
-export const Homepage = () => {
+export default class Homepage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user : this.props.user
+        }
+        console.log("fuck me "+this.props.user);
+    }
+
+    componentWillMount() {
+       firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({user});
+                this.initiUser(user);
+                console.log(this.state.user);
+            }else{
+                this.setState({user:null});
+                console.log(this.state.user);
+            }
+
+        });
+    }
+
+    initiUser(user){
+        const usersRef = firebase.database().ref("users");
+        usersRef.child(user.uid).on('value',(snapshot)=>{
+        //console.log(JSON.stringify(snapshot.val()));
+            if(snapshot.val()==null){
+                const userRef = firebase.database().ref("users/"+user.uid);
+                const user_info = {
+                    username: user.displayName,
+                    email: user.email,
+                    workspaces: {
+                        "default": true
+                    },
+                    background_color: "default"
+                }
+            userRef.set(user_info);
+            }
+        });
+    }
+
+    render(){
     return (
         <Router>
+            {this.state.user ?
+              <Dashboard user={this.state.user}/>
+            :
             <div>
 
             <main role="main">
@@ -209,8 +256,9 @@ export const Homepage = () => {
 
 
             </div>
-
+          }
         </Router>
 
     );
 };
+}

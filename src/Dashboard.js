@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './Login';
+import Homepage from './Homepage';
 import {Header, Widget1} from './Header';
 import SideMenu from "./SideMenu";
 import registerServiceWorker from './registerServiceWorker';
@@ -11,16 +12,49 @@ import {
     Link
 } from 'react-router-dom'
 import firebaseui from "firebaseui";
+import firebase from "firebase";
+
+export function logout(){
+    firebase.auth().signOut().then(function() {
+        ReactDOM.unmountComponentAtNode(document.getElementById('topNav'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('menu-side'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('bottom'));
+        ReactDOM.render(<Homepage user={null}/>,document.getElementById('homepage'));
+        console.log("caonima");
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
 
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-        ReactDOM.render(<Header />, document.getElementById('topNav'));
-        ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
-
+        this.state = {
+            user : this.props.user
+        }
     }
+
+    componentWillMount() {
+
+       firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+
+                this.setState({user});
+                this.initiUser(user);
+                console.log(this.state.user);
+            }else{
+                this.setState({user:null});
+                console.log(this.state.user);
+            }
+
+        });
+    }
+
     render(){
-        return(
+            if(this.state.user){
+                ReactDOM.render(<Header />, document.getElementById('topNav'));
+                ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
+            return(
             <Router>
                 <div>
 
@@ -68,6 +102,11 @@ class Dashboard extends Component {
             </Router>
 
         );
+        }else{
+            return(
+            <Homepage user={null}/>
+            );
+        }
     }
 }
 

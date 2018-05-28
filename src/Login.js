@@ -4,85 +4,22 @@ import firebaseui from 'firebaseui';
 import 'firebase/database';
 import '../node_modules/firebaseui/dist/firebaseui.css';
 import {FIREBASE_CONFIG} from "./config";
+import Dashboard from "./Dashboard";
 //import Form from './components/Form.js'
 
-var app = firebase.initializeApp(FIREBASE_CONFIG);
-
-firebase.auth().onAuthStateChanged( user => {
-    if (user) {
-        // If user state changes and 'user' exists, check Firebase Database for user
-        const userReference = app.database().ref(`users/${user.uid}`);
-        userReference.once('value', snapshot => {
-            if (!snapshot.val()) {
-                // User does not exist, create user entry
-                userReference.set([{
-                    course: "CSE 110",
-                    widgets: [{
-                        "id": 0,
-                        "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                        "site": "www.google.com"
-                    },
-                        {
-                            "id": 0,
-                            "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                            "site": "www.google.com"
-                        },
-                        {
-                            "id": 0,
-                            "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                            "site": "www.google.com"
-                        }]
-                },
-
-                        {
-                            course: "CSE 110",
-                            widgets: [{
-                                "id": 0,
-                                "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                "site": "www.google.com"
-                            },
-                                {
-                                    "id": 0,
-                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                    "site": "www.google.com"
-                                },
-                                {
-                                    "id": 0,
-                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                    "site": "www.google.com"
-                                }]
-                        },
-                        {
-                            course: "CSE 110",
-                            widgets: [{
-                                "id": 0,
-                                "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                "site": "www.google.com"
-                            },
-                                {
-                                    "id": 0,
-                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                    "site": "www.google.com"
-                                },
-                                {
-                                    "id": 0,
-                                    "data": [ "Overall Grade: 92.0%", "Rank: 24.0 / 100.0" ],
-                                    "site": "www.google.com"
-                                }]
-                        }]
-
-                    );
-            }
-        });
-    }
-});
 
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isSignedIn : false,
+            user : this.props.user
+        }
 
-       // firebase.initializeApp(FIREBASE_CONFIG);
 
+        // Initialize the FirebaseUI Widget using Firebase.
+    }
+    componentDidMount() {
         var uiConfig = {
             signInSuccessUrl: '/dashboard',
             signInOptions: [
@@ -97,21 +34,62 @@ class Login extends Component {
             // Terms of service url.
             tosUrl: '<your-tos-url>'
         };
+        let ui = firebaseui.auth.AuthUI.getInstance();
+        if (!ui) {
+            ui = new firebaseui.auth.AuthUI(firebase.auth());
+        }
+      ui.start('#firebaseui-auth-container', uiConfig);
+      this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+        (user) => this.setState({isSignedIn: !!user})
+      );
+    }
+    componentWillMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            this.setState({user});
+            this.initiUser(user);
+            console.log(this.state.user);
+        }else{
+            this.setState({user:null});
+            console.log(this.state.user);
+        }
 
-        // Initialize the FirebaseUI Widget using Firebase.
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        // The start method will wait until the DOM is loaded.
-        ui.start('#firebaseui-auth-container', uiConfig);
-    }
-    render(){
-        return (
-           <div>
-            <div className="centerWrapper">
-            <dev className="full-w-h" id="firebaseui-auth-container"></dev>
-            </div>
-           </div>
-        );
-    }
+    });
+  }
+  initiUser(user){
+    const usersRef = firebase.database().ref("users");
+    usersRef.child(user.uid).on('value',(snapshot)=>{
+    //console.log(JSON.stringify(snapshot.val()));
+        if(snapshot.val()==null){
+            const userRef = firebase.database().ref("users/"+user.uid);
+            const user_info = {
+                username: user.displayName,
+                email: user.email,
+                workspaces: {
+                    "default": true
+                },
+                background_color: "default"
+            }
+        userRef.set(user_info);
+        }
+    });
+  }
+
+  render(){
+        if (!this.state.isSignedIn) {
+        return(
+         <div>
+          <div className="centerWrapper">
+          <div className="full-w-h" id="firebaseui-auth-container"></div>
+          </div>
+         </div>
+         );
+        }else{
+          return(
+            <Dashboard />
+          );
+        }
+  }
 }
 
 export default Login;

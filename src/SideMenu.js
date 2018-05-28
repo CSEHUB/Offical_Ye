@@ -10,6 +10,7 @@ import {
     Link,
     NavLink
 } from 'react-router-dom'
+import {logout} from "./Dashboard"
 
 var courses = ['CSE100', 'CSE110', 'CSE20', 'CSE30'];
 
@@ -51,7 +52,7 @@ class SideMenu extends Component {
 
                             <li><NavLink to="/app/settings" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-cog"></i></div><span className="pad-left-settings">Settings</span></NavLink></li>
                             <li><NavLink to="/help" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-question"></i></div> <span className="pad-left-help">Help</span></NavLink></li>
-                            <li><NavLink to="/help" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-sign-out-alt"></i></div>Sign out</NavLink></li>
+                            <li><NavLink onClick={logout} to="/" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-sign-out-alt"></i></div>Sign out</NavLink></li>
                         </ul>
                     </nav>
                 </Router>
