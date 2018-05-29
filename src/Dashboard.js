@@ -42,7 +42,7 @@ export function makeWorkspace() {
 
 export class Dashboard extends Component {
 
-    //take off splash screen
+ /*}//take off splash screen
     componentDidMount(){
         const element = document.getElementById('splash-outer');
         if(element){
@@ -51,12 +51,12 @@ export class Dashboard extends Component {
                 element.outerHTML = ''
             }, 2000)
         }
-    }
+    } */
 
     constructor(props) {
         super(props);
         //render splash screen only on dashbaord url load, will be taken away soon
-        ReactDOM.render(<div id="splash"><div className="splash-inside"><img className="splash-logo" src={logo}/><img className="splash-gif" src={loadingGif}/></div></div>, document.getElementById('splash-outer'));
+        //ReactDOM.render(<div id="splash"><div className="splash-inside"><img className="splash-logo" src={logo}/><img className="splash-gif" src={loadingGif}/></div></div>, document.getElementById('splash-outer'));
 
         ReactDOM.render(<Header />, document.getElementById('topNav'));
         ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
@@ -81,15 +81,6 @@ export class Dashboard extends Component {
             ReactDOM.render(<Widget1 name={courseName}></Widget1>, document.getElementById('bottom'));
         }
     }
-
-
-
-
-
-
-
-
-
 
     render(){
         return(

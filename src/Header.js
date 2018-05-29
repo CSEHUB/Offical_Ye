@@ -22,6 +22,7 @@ export const Header = () => {
                                aria-label="Search"/>
                             <button className="btn-header btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                         </form>
+                        <div className="addWorkspace ml-auto" data-toggle="modal" data-target="#modal-addWidget">________ADD WIDGET_______</div>
                         <div className="floatRight form-inline">
                             <div className="IconMenu"><i className="far fa-bell"></i></div>
                             <div className="googlePhotoWrapper"><img class="googlePhoto" src={googlePhoto}/></div>
