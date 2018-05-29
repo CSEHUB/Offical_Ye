@@ -111,12 +111,17 @@ class Widget extends Component {
         var courseType = document.getElementById("courseType").value;
         var webURL = document.getElementById("webURL").value;
 
-        //Increment widget count for unique ID for modal popup identifier.
-        widgetNum++;
+        //Check if "http://" if not add it
+        if (webURL.indexOf('http://') != 0) {
+            webURL = 'http://' + webURL;
+        }
 
         this.setState({ website: this.state.website.concat(courseType) });
         this.setState({ urls: this.state.urls.concat(webURL) });
         this.setState({ widgetID: this.state.widgetID.concat(widgetNum) });
+
+        //Increment widget count for unique ID for modal popup identifier.
+        widgetNum++;
     }
 
     render(){
