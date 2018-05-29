@@ -27,6 +27,47 @@ a:hover {
     width: 100%;
 }
 
+#main-bd{
+    background-color: #f6f4f4;
+}
+
+
+
+
+/* --------- Splash Screen Styles --------- */
+#splash{
+    background-color:#ffffff;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    opacity: 1;
+    z-index: 9999;
+}
+
+.splash-gif{
+    width: 62px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.splash-inside{
+    width:270px;
+    height:150px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:-75px 0 0 -135px;
+}
+
+.splash-logo{
+    width:250px;
+    
+}
+
+
+
+
+
 
 /* --------- Top Nav Styles --------- */
 .topNavContainer{
@@ -108,6 +149,10 @@ a:hover {
 
 /* --------- Widget Styles ---------- */
 
+#menu-side{
+    padding-right: 0px !important;
+}
+
 .w-container-out{
     padding: 45px 45px 0px 45px;
 }
@@ -120,6 +165,7 @@ a:hover {
 .w-container{
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.301), 0 1px 3px 1px rgba(60,64,67,0.150);
     resize: both;
+    background-color: white;
 
 }
 
@@ -130,7 +176,7 @@ a:hover {
 .w-top{
     height:24px;
     width:100%;
-    background: white;
+    background: transparent;
 }
 
 .w-container-out:hover .w-top-l{

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import logo from './res/images/Logo.png';
+import loadingGif from './res/images/loadingCircle.gif';
 import {Header, Widget1} from './Header';
 import {SideMenu, buttons} from "./SideMenu";
 import {FIREBASE_CONFIG} from "./config";
@@ -12,6 +14,8 @@ import {
     Route,
     Link
 } from 'react-router-dom'
+
+
 
 export function makeWorkspace() {
     //var app = firebase.initializeApp(FIREBASE_CONFIG);
@@ -37,8 +41,22 @@ export function makeWorkspace() {
 
 
 export class Dashboard extends Component {
+
+    //take off splash screen
+    componentDidMount(){
+        const element = document.getElementById('splash-outer');
+        if(element){
+            setTimeout(() => {
+                // remove the splash screen
+                element.outerHTML = ''
+            }, 2000)
+        }
+    }
+
     constructor(props) {
         super(props);
+        //render splash screen only on dashbaord url load, will be taken away soon
+        ReactDOM.render(<div id="splash"><div className="splash-inside"><img className="splash-logo" src={logo}/><img className="splash-gif" src={loadingGif}/></div></div>, document.getElementById('splash-outer'));
 
         ReactDOM.render(<Header />, document.getElementById('topNav'));
         ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
@@ -63,6 +81,15 @@ export class Dashboard extends Component {
             ReactDOM.render(<Widget1 name={courseName}></Widget1>, document.getElementById('bottom'));
         }
     }
+
+
+
+
+
+
+
+
+
 
     render(){
         return(
