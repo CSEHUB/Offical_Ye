@@ -303,9 +303,9 @@ class Widget extends Component {
 
                                     <form>
                                         <div className="form-group">
-                                            <label htmlFor="exampleFormControlInput1">Title: </label>
+                                            <label htmlFor="exampleFormControlInput1">URL: </label>
                                             <input id="webURL" type="text" className="form-control"
-                                                   placeholder="CSE 105"/>
+                                                   placeholder=""/>
                                         </div>
                                     </form>
 
