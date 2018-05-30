@@ -18,6 +18,7 @@ var wid;
 var website;
 var urls;
 var widgetAdd;
+var uid;
 
 function uploadWidget() {
 
@@ -38,7 +39,7 @@ class Widget extends Component {
     constructor(name) {
         super();
         courseName = name;
-        
+
         this.myRef = React.createRef();
 
         /* this.state = {
@@ -50,7 +51,8 @@ class Widget extends Component {
         this.state = {
             urls: new Array(),
             website: new Array(),
-            widgetID: new Array()
+            widgetID: new Array(),
+            uid: new Array()
         }
 
         this.makeWidget = this.makeWidget.bind(this);
@@ -95,14 +97,16 @@ class Widget extends Component {
                 const getWidgets = firebase.database().ref(path);
 
                 getWidgets.once('value').then((snapshot) => {
-                    snapshot.forEach((childSnapshot) => {
+                    snapshot.forEach(async (childSnapshot) => {
                         website = childSnapshot.val().courseType;
                         urls = childSnapshot.val().url;
+                        uid = childSnapshot.key;
 
                         //Update local widgets.
                         this.setState({ website: this.state.website.concat(website) });
                         this.setState({ urls: this.state.urls.concat(urls) });
                         this.setState({ widgetID: this.state.widgetID.concat(widgetNum) });
+                        this.setState({ uid: this.state.uid.concat(uid) });
 
                         //Increase ID num for nexr widget. (for iframe display)
                         widgetNum++;
@@ -168,51 +172,22 @@ class Widget extends Component {
 
     }
 
+    async rmWidget(param) {
+        var uid = this.state.uid[param]; //Get the widget id
 
-    smallWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
+        //Got to path of widget. Under workspace id
+        var path = `workspaces/` + wid + '/widgets';
+        const ref = await firebase.database().ref(path);
 
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-4');
+        alert(uid);
 
-    }
+        //Delete child at widget id
+        ref.child(uid).remove();
 
-    mediumWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
 
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-8');
-
-    }
-
-    largeWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-12');
+        //Re render widgets on deletion  of widget.
+        //Update local widgets.
+        window.location.reload(); //Will change later.
     }
 
     render(){
@@ -230,7 +205,7 @@ class Widget extends Component {
                                 <Then>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -245,7 +220,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'Piazza'}>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -260,8 +235,8 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'GradeScope'}>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
-                                            <div className="w-top-r"><i className="far fa-edit"></i> <span onClick={this.smallWidget} ref={this.myRef}>[]</span> <span onClick={this.mediumWidget} ref={this.myRef}>[ ]</span><span onClick={this.largeWidget} ref={this.myRef}>[ ]</span></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
                                              data-target={'#' + this.state.widgetID[arrayIndex]}>
@@ -276,7 +251,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'AutoGrader'}>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12  w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -293,7 +268,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'Other'}>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12  w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
