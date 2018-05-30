@@ -165,10 +165,10 @@ class Widget extends Component {
 
                                 {/* If Gradesource, display scraped data from secret number */}
                             <Then>
-                            <div className="col-md-4  w-container-out">
+                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                 <div className="w-top">
                                     <div className="w-top-l"><i className="far fa-times-circle"></i></div>
-                                    <div className="w-top-r">[] [ ] [   ]</div>
+                                    <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                 </div>
                                 <div id="e" draggable="true" className="w-container" data-toggle="modal"
                                      data-target={'#' + this.state.widgetID[arrayIndex]}>
@@ -180,10 +180,10 @@ class Widget extends Component {
 
                                 {/* If piazza, just show logo */}
                                 <ElseIf condition={this.state.website[arrayIndex] == 'Piazza'}>
-                                    <div className="col-md-4 col-sm-8 w-container-out">
+                                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                         <div className="w-top">
                                             <div className="w-top-l"><i className="far fa-times-circle"></i></div>
-                                            <div className="w-top-r">[] [ ] [   ]</div>
+                                            <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
                                              data-target={'#' + this.state.widgetID[arrayIndex]}>
@@ -195,10 +195,10 @@ class Widget extends Component {
 
                                 {/* If Gradescope, just show logo */}
                                 <ElseIf condition={this.state.website[arrayIndex] == 'GradeScope'}>
-                                    <div className="col-md-4  w-container-out">
+                                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                         <div className="w-top">
                                             <div className="w-top-l"><i className="far fa-times-circle"></i></div>
-                                            <div className="w-top-r"><span onClick={this.smallWidget} ref={this.myRef}>[]</span> <span onClick={this.mediumWidget} ref={this.myRef}>[ ]</span><span onClick={this.largeWidget} ref={this.myRef}>[ ]</span></div>
+                                            <div className="w-top-r"><i className="far fa-edit"></i> <span onClick={this.smallWidget} ref={this.myRef}>[]</span> <span onClick={this.mediumWidget} ref={this.myRef}>[ ]</span><span onClick={this.largeWidget} ref={this.myRef}>[ ]</span></div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
                                              data-target={'#' + this.state.widgetID[arrayIndex]}>
@@ -211,10 +211,10 @@ class Widget extends Component {
 
                                 {/* If Autograder, just show logo */}
                                 <ElseIf condition={this.state.website[arrayIndex] == 'AutoGrader'}>
-                                    <div className="col-md-4  w-container-out">
+                                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12  w-container-out">
                                         <div className="w-top">
                                             <div className="w-top-l"><i className="far fa-times-circle"></i></div>
-                                            <div className="w-top-r">[] [ ] [   ]</div>
+                                            <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
                                              data-target={'#' + this.state.widgetID[arrayIndex]}>
@@ -228,10 +228,10 @@ class Widget extends Component {
 
                                 {/* If Other website, just show CSEHUB logo */}
                                 <ElseIf condition={this.state.website[arrayIndex] == 'Other'}>
-                                    <div className="col-md-4  w-container-out">
+                                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12  w-container-out">
                                         <div className="w-top">
                                             <div className="w-top-l"><i className="far fa-times-circle"></i></div>
-                                            <div className="w-top-r">[] [ ] [   ]</div>
+                                            <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
                                              data-target={'#' + this.state.widgetID[arrayIndex]}>

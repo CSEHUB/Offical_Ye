@@ -154,7 +154,7 @@ a:hover {
 }
 
 .w-container-out{
-    padding: 45px 45px 0px 45px;
+    padding: 15px 45px 0px 45px;
 }
 
 .w-container:hover{
@@ -519,4 +519,92 @@ li{
 
 .float-right{
     float:right;
+}
+
+
+
+/* ---- Media Queries for responsive design ----- */
+
+/* -------- Small devices (landscape phones, 576px and up) */
+@media (max-width: 767.98px){
+
+    .menu-side {
+        height: 400px;
+        overflow-y: initial;
+    }
+
+    .widgetLogo {
+        width: 50%;
+    }
+
+    .w-top{
+        display: block;
+    }
+
+    .w-top-l{
+        display: block;
+    }
+
+    .w-container-out .w-top .w-top-l, .w-container-out .w-top .w-top-r{
+        display: block !important;
+        cursor:pointer;
+    }
+
+    .w-container-out .w-top-l {
+        font-size: 23px;
+        color: #8e0707;
+    }
+
+}
+
+
+
+/* -------- Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    .menu-main-item {
+        font-size: 16px;
+    }
+
+    .menu-item {
+        font-size: 15px;
+    }
+
+    .w-container-out {
+        padding: 15px 35px 0px 35px;
+    }
+
+    .widgetLogo{
+        padding-top: 72px;
+    }
+
+    .w-top {
+        height: 31px;
+    }
+
+    .w-container-out:hover .w-top-l{
+        font-size:21px;
+    }
+}
+
+/* -------- Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px){
+
+    .w-container-out {
+        padding: 15px 50px 0px 50px;
+    }
+
+    .widgetLogo{
+        padding-top: 63px;
+    }
+}
+
+
+
+/* -------- Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+    .widgetLogo{
+        padding-top: 75px;
+    }
 }
