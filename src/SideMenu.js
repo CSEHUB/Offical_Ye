@@ -31,7 +31,7 @@ export function buttons() {
 
             getData.once('value', function (snapshot) {
                 snapshot.forEach(function (childSnapshot) {
-                    var childData = childSnapshot.val();
+                    var childData = childSnapshot.key;
                     courses.push(childData);
                 })
                 ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));

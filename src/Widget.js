@@ -15,27 +15,14 @@ import ReactDOM from "react-dom";
 
 var courseName;
 var widgetNum = 0;
+var wid;
+var website;
+var urls;
 
-/*makeWidget() {
-    //var app = firebase.initializeApp(FIREBASE_CONFIG);
-    var course = document.getElementById("course").value;
+function uploadWidget() {
+    alert(wid);
 
-    firebase.auth().onAuthStateChanged( user => {
-        if (user) {
-            const userReference = firebase.database().ref(`users/${user.uid}`);
-
-            var data = {
-                name:course,
-                widgets:""
-            }
-
-            var wid = firebase.database().ref('workspaces').push(data).getKey();
-
-            userReference.child("workspace").child(wid).set(course);
-        }
-        window.location.reload();
-    });
-}*/
+}
 
 class Widget extends Component {
     constructor(name) {
@@ -107,8 +94,6 @@ class Widget extends Component {
         outerDiv.classList.add('col-md-12');
     }
 
-
-
     makeWidget() {
         var courseType;
         var webURL = document.getElementById("webURL").value;
@@ -135,20 +120,42 @@ class Widget extends Component {
             courseType = "Other";
         }
 
-        //Check if "http://" if not add it
+        //Check if "http://" is at begin if not add it
         if (webURL.indexOf('http://') != 0) {
             webURL = 'http://' + webURL;
         }
 
+        //Update local widgets.
         this.setState({ website: this.state.website.concat(courseType) });
         this.setState({ urls: this.state.urls.concat(webURL) });
         this.setState({ widgetID: this.state.widgetID.concat(widgetNum) });
 
+        //Update variables to be pushed.
+        website = courseType;
+        urls = webURL;
+
         //Increment widget count for unique ID for modal popup identifier.
         widgetNum++;
+
+        //Lets prep firebase for update.
+        firebase.auth().onAuthStateChanged( user => {
+            if (user) {
+
+                var path = `users/${user.uid}/workspace/` + courseName;
+                const userCoursenameReference = firebase.database().ref(path);
+
+                //Lets grab the uid to go to the location to store the widget under /workspaces
+                userCoursenameReference.once('value').then(function (snapshot) {
+                    //Get id (key) of workspace from course name
+                    const val = snapshot.val(); //To stay constant outside once function. Will lose data if this is gone.
+                    wid = val;
+                    uploadWidget(); //Must call outside function to finish firebase update because of asynchronous.
+                });
+
+            }
+        });
+
     }
-
-
     render(){
 
 

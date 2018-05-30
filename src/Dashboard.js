@@ -19,7 +19,6 @@ import {
 
 
 export function makeWorkspace() {
-    //var app = firebase.initializeApp(FIREBASE_CONFIG);
     var course = document.getElementById("course").value;
 
     firebase.auth().onAuthStateChanged( user => {
@@ -33,7 +32,7 @@ export function makeWorkspace() {
 
             var wid = firebase.database().ref('workspaces').push(data).getKey();
 
-            userReference.child("workspace").child(wid).set(course);
+            userReference.child("workspace").child(course).set(wid);
         }
         window.location.reload();
     });
