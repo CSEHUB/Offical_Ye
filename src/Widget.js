@@ -97,10 +97,11 @@ class Widget extends Component {
                 const getWidgets = firebase.database().ref(path);
 
                 getWidgets.once('value').then((snapshot) => {
-                    snapshot.forEach(async (childSnapshot) => {
+                    snapshot.forEach((childSnapshot) => {
                         website = childSnapshot.val().courseType;
                         urls = childSnapshot.val().url;
                         uid = childSnapshot.key;
+                        alert("test");
 
                         //Update local widgets.
                         this.setState({ website: this.state.website.concat(website) });
@@ -178,16 +179,14 @@ class Widget extends Component {
         //Got to path of widget. Under workspace id
         var path = `workspaces/` + wid + '/widgets';
         const ref = await firebase.database().ref(path);
-
-        alert(uid);
-
+        
         //Delete child at widget id
         ref.child(uid).remove();
 
 
         //Re render widgets on deletion  of widget.
         //Update local widgets.
-        window.location.reload(); //Will change later.
+        //window.location.reload(); //Will change later.
     }
 
     render(){
