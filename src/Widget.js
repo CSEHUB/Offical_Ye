@@ -41,11 +41,12 @@ class Widget extends Component {
 
         this.myRef = React.createRef();
 
-       /* this.state = {
-            urls: ['https://piazza.com/', 'http://www.gradesource.com/reports/7/29889/index.html', 'https://gradescope.com/embed/', 'https://autograder.ucsd.edu/', 'https://www.youtube.com/embed/dQw4w9WgXcQ'],
-            website: ['Piazza', 'GradeSource', 'GradeScope', 'AutoGrader', 'Other'],
-            widgetID: ['0', '1', '2', '3', '4']
-        } */
+        /* this.state = {
+             urls: ['https://piazza.com/', 'http://www.gradesource.com/reports/7/29889/index.html', 'https://gradescope.com/embed/', 'https://autograder.ucsd.edu/', 'https://www.youtube.com/embed/dQw4w9WgXcQ'],
+             website: ['Piazza', 'GradeSource', 'GradeScope', 'AutoGrader', 'Other'],
+             widgetID: ['0', '1', '2', '3', '4']
+         } */
+
 
 
         this.state = {
@@ -232,7 +233,7 @@ class Widget extends Component {
         outerDiv.classList.add('w-container-out');
         outerDiv.classList.add('col-md-12');
     }
-
+    
     render(){
         return(
             <div className="container-fluid">
@@ -245,18 +246,18 @@ class Widget extends Component {
                             <If condition={this.state.website[arrayIndex] == 'GradeSource'}>
 
                                 {/* If Gradesource, display scraped data from secret number */}
-                            <Then>
-                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
-                                <div className="w-top">
-                                    <div className="w-top-l"><i className="far fa-times-circle"></i></div>
-                                    <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
-                                </div>
-                                <div id="e" draggable="true" className="w-container" data-toggle="modal"
-                                     data-target={'#' + this.state.widgetID[arrayIndex]}>
-                                    <img className="widgetLogo" src={gradesourceLogo}/>
-                                </div>
-                            </div>
-                            </Then>
+                                <Then>
+                                    <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
+                                        <div className="w-top">
+                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
+                                        </div>
+                                        <div id="e" draggable="true" className="w-container" data-toggle="modal"
+                                             data-target={'#' + this.state.widgetID[arrayIndex]}>
+                                            <img className="widgetLogo" src={gradesourceLogo}/>
+                                        </div>
+                                    </div>
+                                </Then>
 
 
                                 {/* If piazza, just show logo */}
@@ -321,40 +322,40 @@ class Widget extends Component {
                                     </div>
 
                                 </ElseIf>
-                        </If>
+                            </If>
                         )
                     })}
                 </div>
 
 
-         {/* Load widget modals at the bottom of screen with pre-loaded iframes. Initially set to display:'none' until user clicks on widget */}
-         {/* Modals and widgets are connected via id's */}
-        {this.state.urls.map((url, Index) => {
-            return (
-                <div key={Index} className="modal fade" id={this.state.widgetID[Index]} tabIndex="-1" role="dialog"
-                     aria-labelledby={this.state.widgetID[Index]}  aria-hidden="true">
-                    <div className="modal-dialog widget-modal modal-dialog-centered" role="document">
-                        <div className="modal-content widget-modal-h">
-                            <div className="modal-body widget-modal-h">
+                {/* Load widget modals at the bottom of screen with pre-loaded iframes. Initially set to display:'none' until user clicks on widget */}
+                {/* Modals and widgets are connected via id's */}
+                {this.state.urls.map((url, Index) => {
+                    return (
+                        <div key={Index} className="modal fade" id={this.state.widgetID[Index]} tabIndex="-1" role="dialog"
+                             aria-labelledby={this.state.widgetID[Index]}  aria-hidden="true">
+                            <div className="modal-dialog widget-modal modal-dialog-centered" role="document">
+                                <div className="modal-content widget-modal-h">
+                                    <div className="modal-body widget-modal-h">
 
 
-                                <If condition={this.state.website[Index] == 'GradeScope'}>
-                                    <Then>
-                                        <p>SEE HOW GRADESCOPE BLOCKS THE IFRAME FROM POPPING UP???? </p>
-                                        <a target="_blank" href="https://stackoverflow.com/a/35790513">Click this text to learn more....</a>
-                                    </Then>
-                                </If>
+                                        <If condition={this.state.website[Index] == 'GradeScope'}>
+                                            <Then>
+                                                <p>SEE HOW GRADESCOPE BLOCKS THE IFRAME FROM POPPING UP???? </p>
+                                                <a target="_blank" href="https://stackoverflow.com/a/35790513">Click this text to learn more....</a>
+                                            </Then>
+                                        </If>
 
 
-                                <iframe className="modal-full" src={this.state.urls[Index]}
-                                        frameBorder="0" allow="autoplay; encrypted-media"></iframe>
+                                        <iframe className="modal-full" src={this.state.urls[Index]}
+                                                frameBorder="0" allow="autoplay; encrypted-media"></iframe>
 
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            )
-        })}
+                    )
+                })}
 
                 {/* Add Website Modal */}
                 <div className="modal fade" id="modal-addWebsite" tabIndex="-1" role="dialog"

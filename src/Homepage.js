@@ -44,12 +44,12 @@ export const Homepage = () => {
             <div>
 
             <main role="main">
-                <div style={backgroundImg} className="jumbotron hp-background bk-fixed">
-                    <div className="container">
+                <div style={backgroundImg} className="jumbotron hp-background bk-fixed geisel">
+                    <div className="container ptm70">
                         <h1 className="display-3">Welcome to CSE HUB!</h1>
                         <p className="c-white">Created for UCSD CSE Students, by CSE Students. With the rigorous CSE coursework, CSE HUB makes your life as a CSE student easier by
                         consolidating all of your class websites into one place.</p>
-                        <p className="form-inline">
+                        <p className="form-inline pd50">
                             <div className="p10"><a className="home-btn" href="./login" role="button">Register</a></div>
                             <div className="p10"><a className="home-btn" href="./login" role="button">Login</a></div>
                         </p>
@@ -70,7 +70,7 @@ export const Homepage = () => {
                                 <img className="homedashImg" src={dashImg}/>
                             </div>
                             <div className="col-md-10 text-center offset-md-1">
-                                <p className="pt45">With CSE HUB, all your coursework is at your fingertips. You can
+                                <p className="pt45 pdm15">With CSE HUB, all your coursework is at your fingertips. You can
                                     create page layouts for all your courses
                                     (which we call workspaces) and then add numerous widgets to each course.</p>
 
@@ -109,7 +109,7 @@ export const Homepage = () => {
                         <div className="col-md-3">
                             <img className="profilePhoto" src={yeProfileImg}/>
                             <h4>Ye Lin</h4>
-                            <h4>Database Specialist</h4>
+                            <h5>Database Specialist</h5>
                         </div>
                         <div className="col-md-3">
                             <img className="profilePhoto" src={mahibProfileImg}/>
@@ -165,7 +165,7 @@ export const Homepage = () => {
                 <div className="b-space pt65"></div>
 
                 <div className="container">
-                    <div className="row pt65 text-center">
+                    <div className="row pt65 ptm85 text-center">
                         <div className="col-md-12">
                             <h2>Built with <span className="heartLogo"><i className="fas fa-heart"></i></span></h2>
                             <p className="pt20">For the Spring 2018 quarter with Gary Gillespie, CSE HUB is a software engineering project for
@@ -176,23 +176,17 @@ export const Homepage = () => {
 
                     <div className="row pt20 text-center">
                         <div className="col-md-12">
-                            <img src={techLogosImg}/>
+                            <img className="w100" src={techLogosImg}/>
                         </div>
                     </div>
                 </div>
 
 
-
-
             </main>
 
             <footer className="container mt65">
-                <p>&copy; CSE HUB 2018</p>
+                <p className="text-center">&copy; CSE HUB 2018</p>
             </footer>
-
-
-
-
 
 
                 <div className="modal fade" id="modal-youtubeTutorial" tabIndex="-1" role="dialog"
@@ -202,7 +196,7 @@ export const Homepage = () => {
 
                             <div className="modal-body">
 
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                <iframe className="w100" width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                                         frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
 
                             </div>
@@ -210,17 +204,6 @@ export const Homepage = () => {
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
 
             </div>
 

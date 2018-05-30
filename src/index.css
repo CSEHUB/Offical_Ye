@@ -33,6 +33,28 @@ a:hover {
 
 
 
+/* --------- Settings Page Styles --------- */
+
+.settings-wrapper{
+    padding-top: 75px;
+}
+
+.settings-outer{
+    width:100%;
+    background-color: white;
+    height: 600px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.301), 0 1px 3px 1px rgba(60,64,67,0.150);
+}
+
+.settings-outer:hover{
+    box-shadow: 0 1px 3px 0 rgba(61,65,68,0.303), 0 4px 8px 3px rgba(60,64,67,0.150);
+}
+
+.settings-inner {
+    padding: 45px 60px;
+    height: 100%;
+}
+
 
 /* --------- Splash Screen Styles --------- */
 #splash{
@@ -437,6 +459,10 @@ li{
     height:826px;
 }
 
+h5 {
+    font-size: 1.0rem;
+}
+
 .star {
     visibility: hidden;
 }
@@ -495,9 +521,9 @@ li{
 }
 
 .profilePhoto {
-    width: 75%;
+    width: 70%;
     border-radius: 301px;
-    height: 183px;
+    height: 176px;
     display: block;
     margin: auto;
     padding: 15px;
@@ -542,6 +568,80 @@ li{
 
 /* -------- Small devices (landscape phones, 576px and up) */
 @media (max-width: 767.98px){
+
+    .h2, h2 {
+        font-size: 2.5rem;
+    }
+
+    .pt65 {
+        padding-top: 15px;
+    }
+
+    .display-3 {
+        font-size: 2.65rem;
+    }
+
+    .c-white {
+        font-size: 14px;
+    }
+
+    .home-btn {
+        padding: 7px 18px;
+        font-size: 14px;
+    }
+
+    .p10 {
+        padding: 7px;
+    }
+
+    .jumbotron.hp-background.geisel {
+        width: 100%;
+        background-size: unset;
+        background-repeat: no-repeat;
+        height: 200px;
+        padding: .5rem 2rem 32rem 2rem;
+    }
+
+    .jumbotron.hp-background.geisel.bk-fixed {
+        background-attachment: inherit;
+    }
+
+    .jumbotron.hp-background{
+        padding: 5rem 2rem 5.0rem 2rem;
+    }
+
+    .pd50{
+        padding-bottom: 10px;
+    }
+
+    .ptm70{
+        padding-top: 70px;
+    }
+
+    .pdm15 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .ptm85{
+        padding-top: 85px;
+    }
+
+    .homedashImg-h {
+        height: 600px;
+    }
+
+    .w100{
+        width:100%;
+    }
+
+    .profilePhoto {
+        width: 180px;
+    }
+
+    .full-w-h {
+        margin-left: -142px;
+    }
 
     .topNavInput{
         width:73% !important;
@@ -618,6 +718,14 @@ li{
 /* -------- Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
 
+    .jumbotron.hp-background.geisel {
+        padding: 2.5rem 2rem 35.5rem 2rem;
+    }
+
+    .display-3 {
+        font-size: 2.5rem;
+    }
+
     .topNavInput {
         width: 66% !important;
     }
@@ -657,6 +765,10 @@ li{
 
 /* -------- Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px){
+
+    .display-3 {
+        font-size: 3.5rem;
+    }
 
     .w-container-out {
         padding: 15px 50px 0px 50px;

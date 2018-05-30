@@ -6,6 +6,7 @@ import loadingGif from './res/images/loadingCircle.gif';
 import {Header, Widget1} from './Header';
 import {SideMenu, buttons} from "./SideMenu";
 import {Settings} from "./Settings";
+import {Help} from "./Help.js";
 import {FIREBASE_CONFIG} from "./config";
 import firebase from 'firebase';
 import 'firebase/database';
@@ -82,6 +83,10 @@ export class Dashboard extends Component {
         else if(pageType == "settings"){
 
             ReactDOM.render(<Settings name={courseName}></Settings>, document.getElementById('bottom'));
+        }
+        else if(pageType == "help"){
+
+            ReactDOM.render(<Help name={courseName}></Help>, document.getElementById('bottom'));
         }
     }
 

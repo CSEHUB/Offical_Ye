@@ -21,6 +21,8 @@
     -->
     <title>CSE HUB</title>
 
+
+
     <!---- Load CDN's (Bootstrap css + js,jQuery)--------->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -33,6 +35,20 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+
+    <!--
+________/\\\\\\\\\_____/\\\\\\\\\\\____/\\\\\\\\\\\\\\\__/\\\________/\\\__/\\\________/\\\__/\\\\\\\\\\\\\___
+_____/\\\////////____/\\\/////////\\\_\/\\\///////////__\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\/////////\\\_
+___/\\\/____________\//\\\______\///__\/\\\_____________\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\_______\/\\\_
+__/\\\_______________\////\\\_________\/\\\\\\\\\\\_____\/\\\\\\\\\\\\\\\_\/\\\_______\/\\\_\/\\\\\\\\\\\\\\__
+ _\/\\\__________________\////\\\______\/\\\///////______\/\\\/////////\\\_\/\\\_______\/\\\_\/\\\/////////\\\_
+  _\//\\\____________________\////\\\___\/\\\_____________\/\\\_______\/\\\_\/\\\_______\/\\\_\/\\\_______\/\\\_
+   __\///\\\___________/\\\______\//\\\__\/\\\_____________\/\\\_______\/\\\_\//\\\______/\\\__\/\\\_______\/\\\_
+    ____\////\\\\\\\\\_\///\\\\\\\\\\\/___\/\\\\\\\\\\\\\\\_\/\\\_______\/\\\__\///\\\\\\\\\/___\/\\\\\\\\\\\\\/__
+     _______\/////////____\///////////_____\///////////////__\///________\///_____\/////////_____\/////////////____
+
+ -->
+
     <div id="splash-outer"></div>
     <div class="container-fluid h-100">
         <div class="row">
@@ -52,31 +68,31 @@
         </div>
     </div>
 
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-
-
   </body>
 
 
 
-
-
+<!--- Script for fade in image on homepage--->
   <script>
-
       $(window).scroll(function() {
-          if ($(this).scrollTop()> 580) {
-              $('#dashboardEx').fadeIn(700, function () {});
-          } else {
-              $('#dashboardEx').fadeOut("slow", function () {});
+          //check window size for mobile, decrease height if so
+          if (window.matchMedia('screen and (max-width: 768px)').matches) {
+              if ($(this).scrollTop() > 200) {
+                  $('#dashboardEx').fadeIn(700, function () {
+                  });
+              } else {
+                  $('#dashboardEx').fadeOut("slow", function () {
+                  });
+              }
+          }
+          else{
+              if ($(this).scrollTop() > 580) {
+                  $('#dashboardEx').fadeIn(700, function () {
+                  });
+              } else {
+                  $('#dashboardEx').fadeOut("slow", function () {
+                  });
+              }
           }
       });
 
