@@ -9,7 +9,6 @@ import piazzaLogo from './res/images/Piazza_logo.png'
 import autograderLogo from './res/images/Autograder_Logo.png'
 import gradescopeLogo from './res/images/Gradescope_logo.png'
 
-
 import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 import ReactDOM from "react-dom";
 
@@ -18,15 +17,25 @@ var widgetNum = 0;
 var wid;
 var website;
 var urls;
+var widgetAdd = false;
 
 function uploadWidget() {
-    alert(wid);
 
+    var path = `workspaces/` + wid + '/widgets';
+
+    var widget = {
+        id:0,
+        courseType:website,
+        url:urls
+    }
+
+    firebase.database().ref(path).push(widget);
+
+    widgetAdd = false; //Finish add widget process.
 }
 
 class Widget extends Component {
     constructor(name) {
-        { /*  super(prop); */ }
         super();
         courseName = name;
 
@@ -38,6 +47,7 @@ class Widget extends Component {
             widgetID: ['0', '1', '2', '3', '4']
         } */
 
+
         this.state = {
             urls: new Array(),
             website: new Array(),
@@ -46,57 +56,76 @@ class Widget extends Component {
 
         this.makeWidget = this.makeWidget.bind(this);
 
+        //Gets wid and calls appropriate function asynchronously
+        // for adding or getting widget. In this case it will get widgets.
+        this.getWid();
     }
 
-    smallWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
+    //Get workspace ID
+    getWid() {
+        //Lets prep firebase for update.
+        firebase.auth().onAuthStateChanged( user => {
+            if (user) {
+                var path = `users/${user.uid}/workspace/` + courseName;
+                const userCoursenameReference = firebase.database().ref(path);
 
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-4');
+                //Lets grab the uid to go to the location to store the widget under /workspaces
+                userCoursenameReference.once('value').then((snapshot) => {
+                    //Get id (key) of workspace from course name
+                    const val = snapshot.val(); //To stay constant outside once function. Will lose data if this is gone.
+                    wid = val;
 
+                    if(wid !== null) {
+                        if(widgetAdd === true)
+                            uploadWidget();
+                        else
+                            this.getWidgets() //Must call outside function to finish widget render because of asynchronous.
+                    }
+                });
+
+            }
+        });
     }
 
-    mediumWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
+    getWidgets() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                var path = `workspaces/` + wid + '/widgets';
+                const getWidgets = firebase.database().ref(path);
 
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-8');
+                getWidgets.once('value').then((snapshot) => {
+                    snapshot.forEach((childSnapshot) => {
+                        website = "Piazza"//childSnapshot.courseType;
+                        urls = 'https://www.youtube.com/embed/dQw4w9WgXcQ' //childSnapshot.url;
 
+                        //Update local widgets.
+                        this.setState({ website: this.state.website.concat(website) });
+                        this.setState({ urls: this.state.urls.concat(urls) });
+                        this.setState({ widgetID: this.state.widgetID.concat(widgetNum) });
+
+                        //Increase ID num for nexr widget. (for iframe display)
+                        widgetNum++;
+
+                    })
+                }, function(error) {
+                    // The callback failed.
+                    console.error(error);
+                });
+            }
+
+        })
     }
 
-    largeWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-12');
+    vocal() {
+        alert(urls);
     }
 
     makeWidget() {
         var courseType;
         var webURL = document.getElementById("webURL").value;
+
+        //Currently adding widget. For getWid method.
+        widgetAdd = true;
 
         //Make sure url is lowercase for comparisons
         webURL = webURL.toLowerCase();
@@ -156,11 +185,56 @@ class Widget extends Component {
         });
 
     }
+
+
+    smallWidget = () => {
+        const element = this.myRef.current;
+        console.log(element);
+        const leftDiv = element.parentNode;
+        console.log(leftDiv);
+        const topDiv = leftDiv.parentNode;
+        console.log(topDiv);
+        const outerDiv = topDiv.parentNode;
+        console.log(outerDiv);
+        outerDiv.className = "";
+
+        outerDiv.classList.add('w-container-out');
+        outerDiv.classList.add('col-md-4');
+
+    }
+
+    mediumWidget = () => {
+        const element = this.myRef.current;
+        console.log(element);
+        const leftDiv = element.parentNode;
+        console.log(leftDiv);
+        const topDiv = leftDiv.parentNode;
+        console.log(topDiv);
+        const outerDiv = topDiv.parentNode;
+        console.log(outerDiv);
+        outerDiv.className = "";
+
+        outerDiv.classList.add('w-container-out');
+        outerDiv.classList.add('col-md-8');
+
+    }
+
+    largeWidget = () => {
+        const element = this.myRef.current;
+        console.log(element);
+        const leftDiv = element.parentNode;
+        console.log(leftDiv);
+        const topDiv = leftDiv.parentNode;
+        console.log(topDiv);
+        const outerDiv = topDiv.parentNode;
+        console.log(outerDiv);
+        outerDiv.className = "";
+        outerDiv.classList.add('w-container-out');
+        outerDiv.classList.add('col-md-12');
+    }
+
     render(){
-
-
         return(
-
             <div className="container-fluid">
                 <div className="row">
                     {/* Load/render widgets you see on screen intially */}

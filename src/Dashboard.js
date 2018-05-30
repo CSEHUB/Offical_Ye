@@ -27,7 +27,6 @@ export function makeWorkspace() {
 
              var data = {
                 name:course,
-                widgets:""
              }
 
             var wid = firebase.database().ref('workspaces').push(data).getKey();
