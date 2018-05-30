@@ -14,7 +14,7 @@ import {
 } from 'react-router-dom'
 
 
-export class Settings extends Component {
+export class Help extends Component {
 
     constructor(props) {
         super(props);
@@ -27,9 +27,7 @@ export class Settings extends Component {
                         <div className="col-md-8 offset-md-2 settings-wrapper">
                             <div className="settings-outer">
                                 <div className="settings-inner">
-                                <div><h3>Settings</h3></div>
-                                    <div><h4>Delete Workspaces</h4></div>
-                                    <div><h4>Change App Background Color</h4></div>
+                                    <div><h3>Help/Tutorial</h3></div>
                                 </div>
                             </div>
                         </div>
@@ -41,4 +39,4 @@ export class Settings extends Component {
     }
 }
 
-export default Settings;
+export default Help;
