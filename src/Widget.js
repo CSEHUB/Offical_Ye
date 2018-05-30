@@ -107,9 +107,33 @@ class Widget extends Component {
         outerDiv.classList.add('col-md-12');
     }
 
+
+
     makeWidget() {
-        var courseType = document.getElementById("courseType").value;
+        var courseType;
         var webURL = document.getElementById("webURL").value;
+
+        //Make sure url is lowercase for comparisons
+        webURL = webURL.toLowerCase();
+
+        //Assign coursetype
+        if (webURL.indexOf('gradesource') == 0) {
+            courseType = "GradeSource";
+        }
+
+        else if (webURL.indexOf('gradescope') == 0) {
+            courseType = "GradeScope";
+        }
+
+        else if (webURL.indexOf('autograder') == 0) {
+            courseType = "AutoGrader";
+        }
+        else if (webURL.indexOf('piazza') == 0) {
+            courseType = "Piazza";
+        }
+        else {
+            courseType = "Other";
+        }
 
         //Check if "http://" if not add it
         if (webURL.indexOf('http://') != 0) {
@@ -123,6 +147,7 @@ class Widget extends Component {
         //Increment widget count for unique ID for modal popup identifier.
         widgetNum++;
     }
+
 
     render(){
 
@@ -142,7 +167,7 @@ class Widget extends Component {
                             <Then>
                             <div className="col-md-4  w-container-out">
                                 <div className="w-top">
-                                    <div className="w-top-l">[X]</div>
+                                    <div className="w-top-l"><i className="far fa-times-circle"></i></div>
                                     <div className="w-top-r">[] [ ] [   ]</div>
                                 </div>
                                 <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -155,9 +180,9 @@ class Widget extends Component {
 
                                 {/* If piazza, just show logo */}
                                 <ElseIf condition={this.state.website[arrayIndex] == 'Piazza'}>
-                                    <div className="col-md-4  w-container-out">
+                                    <div className="col-md-4 col-sm-8 w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l">[X]</div>
+                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r">[] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -172,7 +197,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'GradeScope'}>
                                     <div className="col-md-4  w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l">[X]</div>
+                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><span onClick={this.smallWidget} ref={this.myRef}>[]</span> <span onClick={this.mediumWidget} ref={this.myRef}>[ ]</span><span onClick={this.largeWidget} ref={this.myRef}>[ ]</span></div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -188,7 +213,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'AutoGrader'}>
                                     <div className="col-md-4  w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l">[X]</div>
+                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r">[] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -205,7 +230,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'Other'}>
                                     <div className="col-md-4  w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l">[X]</div>
+                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r">[] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -295,16 +320,6 @@ class Widget extends Component {
                             <div className="modal-body">
 
                                 <form>
-                                    <div className="form-group">
-                                        <label htmlFor="exampleFormControlSelect1">Website Type: </label>
-                                        <select className="form-control" id="courseType">
-                                            <option>Piazza</option>
-                                            <option>AutoGrader</option>
-                                            <option>GradeSource</option>
-                                            <option>GradeScope</option>
-                                            <option>Other</option>
-                                        </select>
-                                    </div>
 
                                     <form>
                                         <div className="form-group">

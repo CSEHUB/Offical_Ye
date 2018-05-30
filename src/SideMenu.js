@@ -5,6 +5,7 @@ import {Header, Widget1} from './Header';
 import React, {Component} from 'react';
 import ReactDOM from "react-dom";
 import firebase from 'firebase';
+import {Settings} from "./Settings";
 import 'firebase/database';
 import {
     BrowserRouter as Router,
@@ -43,6 +44,17 @@ export function buttons() {
     })
 }
 
+
+function openSettings() {
+    {/* This removes any widgets that may be from a different class */}
+    ReactDOM.unmountComponentAtNode(document.getElementById('bottom'));
+
+    {/* Render the settings page */}
+    ReactDOM.render(<Settings/>, document.getElementById('bottom'));
+}
+
+
+
 export class SideMenu extends Component {
 
     constructor(props) {
@@ -72,8 +84,8 @@ export class SideMenu extends Component {
                             <div className="border"></div>
                             <br></br>
 
-                            <li><NavLink to="/app/settings" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-cog"></i></div><span className="pad-left-settings">Settings</span></NavLink></li>
-                            <li><NavLink to="/help" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-question"></i></div> <span className="pad-left-help">Help</span></NavLink></li>
+                            <li onClick={openSettings}><NavLink to="/dashboard/settings" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-cog"></i></div><span className="pad-left-settings">Settings</span></NavLink></li>
+                            <li><NavLink to="/dashboard/help" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-question"></i></div> <span className="pad-left-help">Help</span></NavLink></li>
                             <li><NavLink to="/logout" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-sign-out-alt"></i></div>Sign out</NavLink></li>
 
                         </ul>

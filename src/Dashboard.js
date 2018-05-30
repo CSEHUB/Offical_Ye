@@ -5,6 +5,7 @@ import logo from './res/images/Logo.png';
 import loadingGif from './res/images/loadingCircle.gif';
 import {Header, Widget1} from './Header';
 import {SideMenu, buttons} from "./SideMenu";
+import {Settings} from "./Settings";
 import {FIREBASE_CONFIG} from "./config";
 import firebase from 'firebase';
 import 'firebase/database';
@@ -80,7 +81,12 @@ export class Dashboard extends Component {
             //Load widgets component, passing in that course name as a prop to load it's widgets
             ReactDOM.render(<Widget1 name={courseName}></Widget1>, document.getElementById('bottom'));
         }
+        else if(pageType == "settings"){
+
+            ReactDOM.render(<Settings name={courseName}></Settings>, document.getElementById('bottom'));
+        }
     }
+
 
     render(){
         return(

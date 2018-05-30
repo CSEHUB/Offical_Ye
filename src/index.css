@@ -166,7 +166,7 @@ a:hover {
     box-shadow: 0 1px 2px 0 rgba(60,64,67,0.301), 0 1px 3px 1px rgba(60,64,67,0.150);
     resize: both;
     background-color: white;
-
+    height: 250px;
 }
 
 .inline{
@@ -174,12 +174,14 @@ a:hover {
 }
 
 .w-top{
-    height:24px;
+    height:34px;
     width:100%;
     background: transparent;
 }
 
 .w-container-out:hover .w-top-l{
+    font-size: 23px;
+    color:#8e0707;
     cursor: pointer;
     display: block !important;
     -webkit-animation: fadein .3s;
@@ -207,10 +209,12 @@ a:hover {
     display:none;
 }
 
+
 .w-top-l{
     float:left;
     display:none;
 }
+
 .w-top-r{
     float:right;
     display:none;
@@ -245,7 +249,7 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    padding-bottom: 80px;
+    padding-top: 93px;
 }
 
 
