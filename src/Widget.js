@@ -117,18 +117,18 @@ class Widget extends Component {
         webURL = webURL.toLowerCase();
 
         //Assign coursetype
-        if (webURL.indexOf('gradesource') == 0) {
+        if (webURL.indexOf('gradesource') !== 0) {
             courseType = "GradeSource";
         }
 
-        else if (webURL.indexOf('gradescope') == 0) {
+        else if (webURL.indexOf('gradescope') !== 0) {
             courseType = "GradeScope";
         }
 
-        else if (webURL.indexOf('autograder') == 0) {
+        else if (webURL.indexOf('autograder') !== 0) {
             courseType = "AutoGrader";
         }
-        else if (webURL.indexOf('piazza') == 0) {
+        else if (webURL.indexOf('piazza') !== 0) {
             courseType = "Piazza";
         }
         else {
