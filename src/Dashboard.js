@@ -75,7 +75,7 @@ export class Dashboard extends Component {
         //if page is equal to a course page, we know that we need to load widgets in the bottom right section
         if(pageType == "course") {
             //get course Name (so we know which widgets to load)
-            var courseName = pathParts[2];
+            var courseName = pathParts[3];
             console.log("Course: " + courseName);
             //Load widgets component, passing in that course name as a prop to load it's widgets
             ReactDOM.render(<Widget1 name={courseName}></Widget1>, document.getElementById('bottom'));

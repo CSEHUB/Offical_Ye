@@ -17,7 +17,7 @@ var widgetNum = 0;
 var wid;
 var website;
 var urls;
-var widgetAdd = false;
+var widgetAdd;
 
 function uploadWidget() {
 
@@ -38,7 +38,7 @@ class Widget extends Component {
     constructor(name) {
         super();
         courseName = name;
-
+        
         this.myRef = React.createRef();
 
         /* this.state = {
@@ -46,8 +46,6 @@ class Widget extends Component {
              website: ['Piazza', 'GradeSource', 'GradeScope', 'AutoGrader', 'Other'],
              widgetID: ['0', '1', '2', '3', '4']
          } */
-
-
 
         this.state = {
             urls: new Array(),
@@ -59,10 +57,11 @@ class Widget extends Component {
 
         //Gets wid and calls appropriate function asynchronously
         // for adding or getting widget. In this case it will get widgets.
+        widgetAdd = false;
         this.getWid();
     }
 
-    //Get workspace ID
+    //Get workspace ID and call upload widget or download widgets
     getWid() {
         //Lets prep firebase for update.
         firebase.auth().onAuthStateChanged( user => {
@@ -77,10 +76,11 @@ class Widget extends Component {
                     wid = val;
 
                     if(wid !== null) {
-                        if(widgetAdd === true)
+                        if(Boolean(widgetAdd)) {
                             uploadWidget();
+                        }
                         else
-                            this.getWidgets() //Must call outside function to finish widget render because of asynchronous.
+                            this.getWidgets(); //Must call outside function to finish widget render because of asynchronous.
                     }
                 });
 
@@ -96,8 +96,8 @@ class Widget extends Component {
 
                 getWidgets.once('value').then((snapshot) => {
                     snapshot.forEach((childSnapshot) => {
-                        website = "Piazza"//childSnapshot.courseType;
-                        urls = 'https://www.youtube.com/embed/dQw4w9WgXcQ' //childSnapshot.url;
+                        website = childSnapshot.val().courseType;
+                        urls = childSnapshot.val().url;
 
                         //Update local widgets.
                         this.setState({ website: this.state.website.concat(website) });
@@ -115,10 +115,6 @@ class Widget extends Component {
             }
 
         })
-    }
-
-    vocal() {
-        alert(urls);
     }
 
     makeWidget() {
@@ -167,23 +163,8 @@ class Widget extends Component {
         //Increment widget count for unique ID for modal popup identifier.
         widgetNum++;
 
-        //Lets prep firebase for update.
-        firebase.auth().onAuthStateChanged( user => {
-            if (user) {
-
-                var path = `users/${user.uid}/workspace/` + courseName;
-                const userCoursenameReference = firebase.database().ref(path);
-
-                //Lets grab the uid to go to the location to store the widget under /workspaces
-                userCoursenameReference.once('value').then(function (snapshot) {
-                    //Get id (key) of workspace from course name
-                    const val = snapshot.val(); //To stay constant outside once function. Will lose data if this is gone.
-                    wid = val;
-                    uploadWidget(); //Must call outside function to finish firebase update because of asynchronous.
-                });
-
-            }
-        });
+        //Lets prep firebase for update and then update.
+        this.getWid();
 
     }
 
@@ -233,7 +214,7 @@ class Widget extends Component {
         outerDiv.classList.add('w-container-out');
         outerDiv.classList.add('col-md-12');
     }
-    
+
     render(){
         return(
             <div className="container-fluid">
