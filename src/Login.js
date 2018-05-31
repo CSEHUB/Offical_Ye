@@ -32,6 +32,9 @@ class Login extends Component {
 
        // firebase.initializeApp(FIREBASE_CONFIG);
 
+    }
+
+    componentDidMount(){
         var uiConfig = {
             signInSuccessUrl: '/dashboard',
             signInOptions: [

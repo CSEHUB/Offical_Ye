@@ -14,43 +14,106 @@ import {
 import registerServiceWorker from './registerServiceWorker';
 import {Dashboard} from "./Dashboard";
 
+const initApp = function() {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                this.isAuthenticated = true;
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var uid = user.uid;
+                var phoneNumber = user.phoneNumber;
+                var providerData = user.providerData;
+                user.getIdToken().then(function (accessToken) {
+                    ReactDOM.render(
+                        <Router>
+                            <div>
+                                <Route exact path="/" render={(props)=> (
+                                    <Redirect to="/dashboard" />
+                                )}/>
+                            </div>
+                        </Router>, document.getElementById('bottom')
+                    );
+
+
+                    {/* 2.) Load login screen*/
+                    }
+                    ReactDOM.render(
+                        <Router>
+                            <div>
+                                <Route exact path="/login" render={(props)=> (
+                                    <Redirect to="/dashboard" />
+                                )}/>
+                            </div>
+                        </Router>, document.getElementById('bottom')
+                    );
+
+
+                    {/* PROB CAN COMBINE 3 and 4 below if we come up with a smart string instead of dashboard (like app or my) to put after root url*/
+                    }
+
+
+                    {/* 4.) Load course on URL refresh/direct link*/
+                    }
+                    ReactDOM.render(
+                        <Router>
+                            <div>
+                                <Route path='/(|login|dashboard)' render={(props) => (
+                                    <Dashboard {...props} />
+                                )}/>
+
+                            </div>
+                        </Router>, document.getElementById('bottom')
+                    );
+                });
+            } else {
+                ReactDOM.render(
+                    <Router>
+                        <div>
+                            <Route exact path="/" component={Homepage}/>
+                        </div>
+                    </Router>, document.getElementById('homepage')
+                );
+
+
+                {/* 2.) Load login screen*/
+                }
+                ReactDOM.render(
+                    <Router>
+                        <div>
+                            <Route exact path="/(login|dashboard)" component={Login}/>
+                        </div>
+                    </Router>, document.getElementById('signin')
+                );
+
+
+                {/* PROB CAN COMBINE 3 and 4 below if we come up with a smart string instead of dashboard (like app or my) to put after root url*/
+                }
+
+
+                {/* 4.) Load course on URL refresh/direct link*/
+                }
+                /*ReactDOM.render(
+                    <Router>
+                        <div>
+                            <Route exact path='/dashboard' component={Login} />
+
+                        </div>
+                    </Router>, document.getElementById('signin')
+                );*/
+
+            }
+        }, function (error) {
+            console.log(error);
+        });
+};
+
+window.addEventListener('load', function() {
+    initApp();
+});
 {/* 1.) Initially Load homepage*/}
 
-    ReactDOM.render(
-        <Router>
-            <div>
-                <Route exact path="/" component={Homepage}/>
-            </div>
-        </Router>, document.getElementById('homepage')
-    );
-
-
-    {/* 2.) Load login screen*/
-    }
-    ReactDOM.render(
-        <Router>
-            <div>
-                <Route exact path="/login" component={Login}/>
-            </div>
-        </Router>, document.getElementById('signin')
-    );
-
-
-    {/* PROB CAN COMBINE 3 and 4 below if we come up with a smart string instead of dashboard (like app or my) to put after root url*/
-    }
-
-
-    {/* 4.) Load course on URL refresh/direct link*/
-    }
-    ReactDOM.render(
-        <Router>
-            <div>
-                <Route path='/dashboard' render={(props) => (
-                    <Dashboard {...props} />
-                )}/>
-
-            </div>
-        </Router>, document.getElementById('bottom')
-    );
 
 registerServiceWorker();

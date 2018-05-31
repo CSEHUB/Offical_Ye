@@ -5,6 +5,7 @@ import {Header, Widget1} from './Header';
 import React, {Component} from 'react';
 import ReactDOM from "react-dom";
 import firebase from 'firebase';
+import firebaseui from 'firebaseui';
 import {Settings} from "./Settings";
 import {Help} from "./Help.js";
 import 'firebase/database';
@@ -68,8 +69,9 @@ export function logout(){
         ReactDOM.unmountComponentAtNode(document.getElementById('topNav'));
         ReactDOM.unmountComponentAtNode(document.getElementById('menu-side'));
         ReactDOM.unmountComponentAtNode(document.getElementById('bottom'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('signin'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('homepage'));
         ReactDOM.render(<Homepage />,document.getElementById('homepage'));
-        console.log("caonima");
     }).catch(function(error) {
         console.log(error);
     });
