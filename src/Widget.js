@@ -30,9 +30,11 @@ function uploadWidget() {
         url:urls
     }
 
-    firebase.database().ref(path).push(widget);
 
     widgetAdd = false; //Finish add widget process.
+
+    return firebase.database().ref(path).push(widget).getKey();
+
 }
 
 class Widget extends Component {
@@ -79,10 +81,12 @@ class Widget extends Component {
 
                     if(wid !== null) {
                         if(Boolean(widgetAdd)) {
-                            uploadWidget();
+                            var x = uploadWidget();
+                            this.setState({ uid: this.state.uid.concat(x) });
                         }
-                        else
+                        else {
                             this.getWidgets(); //Must call outside function to finish widget render because of asynchronous.
+                        }
                     }
                 });
 
@@ -91,6 +95,7 @@ class Widget extends Component {
     }
 
     getWidgets() {
+
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 var path = `workspaces/` + wid + '/widgets';
@@ -101,7 +106,6 @@ class Widget extends Component {
                         website = childSnapshot.val().courseType;
                         urls = childSnapshot.val().url;
                         uid = childSnapshot.key;
-                        alert("test");
 
                         //Update local widgets.
                         this.setState({ website: this.state.website.concat(website) });
@@ -179,14 +183,15 @@ class Widget extends Component {
         //Got to path of widget. Under workspace id
         var path = `workspaces/` + wid + '/widgets';
         const ref = await firebase.database().ref(path);
-        
+
         //Delete child at widget id
         ref.child(uid).remove();
 
+        //this.getWid();
 
         //Re render widgets on deletion  of widget.
         //Update local widgets.
-        //window.location.reload(); //Will change later.
+        window.location.reload(); //Will change later.
     }
 
     render(){
