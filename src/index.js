@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import firebase from 'firebase';
 import './index.css';
 import Login from './Login';
 import {Homepage} from './Homepage'
@@ -7,48 +8,49 @@ import {Header, Widget1} from './Header';
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link,
+    Redirect
 } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
 import {Dashboard} from "./Dashboard";
 
 {/* 1.) Initially Load homepage*/}
-ReactDOM.render(
-<Router>
-    <div>
-        <Route exact path="/" component = {Homepage}/>
-    </div>
-</Router>, document.getElementById('homepage')
-);
+
+    ReactDOM.render(
+        <Router>
+            <div>
+                <Route exact path="/" component={Homepage}/>
+            </div>
+        </Router>, document.getElementById('homepage')
+    );
 
 
-{/* 2.) Load login screen*/}
-ReactDOM.render(
-    <Router>
-        <div>
-            <Route exact path="/login" component = {Login}/>
-        </div>
-    </Router>, document.getElementById('signin')
-);
+    {/* 2.) Load login screen*/
+    }
+    ReactDOM.render(
+        <Router>
+            <div>
+                <Route exact path="/login" component={Login}/>
+            </div>
+        </Router>, document.getElementById('signin')
+    );
 
 
-
-{/* PROB CAN COMBINE 3 and 4 below if we come up with a smart string instead of dashboard (like app or my) to put after root url*/}
-
-
-{/* 4.) Load course on URL refresh/direct link*/}
-ReactDOM.render(
-    <Router>
-        <div>
-            <Route path='/dashboard' render={(props) => (
-                <Dashboard {...props} />
-            )}/>
-
-        </div>
-    </Router>, document.getElementById('bottom')
-);
+    {/* PROB CAN COMBINE 3 and 4 below if we come up with a smart string instead of dashboard (like app or my) to put after root url*/
+    }
 
 
+    {/* 4.) Load course on URL refresh/direct link*/
+    }
+    ReactDOM.render(
+        <Router>
+            <div>
+                <Route path='/dashboard' render={(props) => (
+                    <Dashboard {...props} />
+                )}/>
 
+            </div>
+        </Router>, document.getElementById('bottom')
+    );
 
 registerServiceWorker();

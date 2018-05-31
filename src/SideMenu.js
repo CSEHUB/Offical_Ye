@@ -14,6 +14,7 @@ import {
     Link,
     NavLink
 } from 'react-router-dom'
+import {Homepage} from "./Homepage";
 
 var courses = new Array();
 
@@ -62,7 +63,17 @@ function openHelp() {
     ReactDOM.render(<Help/>, document.getElementById('bottom'));
 }
 
-
+export function logout(){
+    firebase.auth().signOut().then(function() {
+        ReactDOM.unmountComponentAtNode(document.getElementById('topNav'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('menu-side'));
+        ReactDOM.unmountComponentAtNode(document.getElementById('bottom'));
+        ReactDOM.render(<Homepage />,document.getElementById('homepage'));
+        console.log("caonima");
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
 
 export class SideMenu extends Component {
 
@@ -95,7 +106,7 @@ export class SideMenu extends Component {
 
                             <li onClick={openSettings}><NavLink to="/dashboard/settings" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-cog"></i></div><span className="pad-left-settings">Settings</span></NavLink></li>
                             <li onClick={openHelp}><NavLink to="/dashboard/help" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-question"></i></div> <span className="pad-left-help">Help</span></NavLink></li>
-                            <li><NavLink to="/logout" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-sign-out-alt"></i></div>Sign out</NavLink></li>
+                            <li><NavLink onClick={logout} to="/" className="menu-main-item mih" activeClassName="activeMenuItem"><div className="menu-icons"><i className="fas fa-sign-out-alt"></i></div>Sign out</NavLink></li>
 
                         </ul>
                     </nav>
