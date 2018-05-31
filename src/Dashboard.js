@@ -34,7 +34,7 @@ export function makeWorkspace() {
 
             userReference.child("workspace").child(course).set(wid);
         }
-        window.location.reload();
+        //window.location.reload();
     });
 }
 

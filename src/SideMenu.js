@@ -81,7 +81,55 @@ export class SideMenu extends Component {
 
     constructor(props) {
         super(props);
+        this.state ={
+            user : null,
+            courses : new Array()
+        };
     }
+
+    componentWillMount(){
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({user});
+                var userId = user.uid;
+                var getData = firebase.database().ref('/users/' + userId + '/workspace');
+                var temp = new Array();
+                getData.once('value', (snapshot) => {
+                    snapshot.forEach((childSnapshot) => {
+                        console.log(childSnapshot);
+                        var childData = childSnapshot.key;
+                        temp.push(childData);
+                    })
+                    this.setState({courses:temp});
+                    //ReactDOM.render(<SideMenu />, document.getElementById('menu-side'));
+                }, function(error) {
+                    // The callback failed.
+                    console.error(error);
+                });
+            }
+
+        });
+    }
+
+    componentDidMount(){
+        this.listenAddCourse();
+    }
+
+
+    listenAddCourse(){
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user) {
+                var userId = user.uid;
+                var getData = firebase.database().ref('/users/' + userId + '/workspace');
+                var old_courses = this.state.courses;
+                getData.on('child_added', function (snapshot, prevChildKey) {
+                    console.log(snapshot.val().name);
+                    console.log(prevChildKey);
+                });
+            }
+        });
+    }
+
     render(){
         return(
             <div className="container-fluid">
@@ -94,7 +142,7 @@ export class SideMenu extends Component {
 
                             {/* We need to loop data and populate this format with course name in them */}
 
-                            {courses.map((courseTitle, arrayIndex) => {
+                            {this.state.courses.map((courseTitle, arrayIndex) => {
                                 return (
                                     <li onClick={addWidget.bind(this, courseTitle)}><NavLink to={"/dashboard/course/" + courseTitle} className="menu-item mih" activeClassName="activeMenuItem" >{courseTitle}</NavLink></li>
                                 )
