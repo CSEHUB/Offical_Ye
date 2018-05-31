@@ -62,8 +62,6 @@ function openHelp() {
     ReactDOM.render(<Help/>, document.getElementById('bottom'));
 }
 
-
-
 export class SideMenu extends Component {
 
     constructor(props) {

@@ -38,8 +38,6 @@ export function makeWorkspace() {
     });
 }
 
-
-
 export class Dashboard extends Component {
 
  /*}//take off splash screen

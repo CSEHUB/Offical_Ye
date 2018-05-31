@@ -30,7 +30,6 @@ function uploadWidget() {
         url:urls
     }
 
-
     widgetAdd = false; //Finish add widget process.
 
     return firebase.database().ref(path).push(widget).getKey();
@@ -157,7 +156,7 @@ class Widget extends Component {
         }
 
         //Check if "http://" is at begin if not add it
-        if (webURL.indexOf('http://') != 0) {
+        if (webURL.indexOf('http') != 0) {
             webURL = 'http://' + webURL;
         }
 
