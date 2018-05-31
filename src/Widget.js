@@ -18,6 +18,7 @@ var wid;
 var website;
 var urls;
 var widgetAdd;
+var uid;
 
 function uploadWidget() {
 
@@ -29,16 +30,17 @@ function uploadWidget() {
         url:urls
     }
 
-    firebase.database().ref(path).push(widget);
-
     widgetAdd = false; //Finish add widget process.
+
+    return firebase.database().ref(path).push(widget).getKey();
+
 }
 
 class Widget extends Component {
     constructor(name) {
         super();
         courseName = name;
-        
+
         this.myRef = React.createRef();
 
         /* this.state = {
@@ -50,7 +52,8 @@ class Widget extends Component {
         this.state = {
             urls: new Array(),
             website: new Array(),
-            widgetID: new Array()
+            widgetID: new Array(),
+            uid: new Array()
         }
 
         this.makeWidget = this.makeWidget.bind(this);
@@ -77,10 +80,12 @@ class Widget extends Component {
 
                     if(wid !== null) {
                         if(Boolean(widgetAdd)) {
-                            uploadWidget();
+                            var x = uploadWidget();
+                            this.setState({ uid: this.state.uid.concat(x) });
                         }
-                        else
+                        else {
                             this.getWidgets(); //Must call outside function to finish widget render because of asynchronous.
+                        }
                     }
                 });
 
@@ -89,6 +94,7 @@ class Widget extends Component {
     }
 
     getWidgets() {
+
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 var path = `workspaces/` + wid + '/widgets';
@@ -98,11 +104,13 @@ class Widget extends Component {
                     snapshot.forEach((childSnapshot) => {
                         website = childSnapshot.val().courseType;
                         urls = childSnapshot.val().url;
+                        uid = childSnapshot.key;
 
                         //Update local widgets.
                         this.setState({ website: this.state.website.concat(website) });
                         this.setState({ urls: this.state.urls.concat(urls) });
                         this.setState({ widgetID: this.state.widgetID.concat(widgetNum) });
+                        this.setState({ uid: this.state.uid.concat(uid) });
 
                         //Increase ID num for nexr widget. (for iframe display)
                         widgetNum++;
@@ -138,6 +146,7 @@ class Widget extends Component {
 
         else if (webURL.indexOf('autograder') !== -1) {
             courseType = "AutoGrader";
+            webURL = "http://www.piazza.com"
         }
         else if (webURL.indexOf('piazza') !== -1) {
             courseType = "Piazza";
@@ -147,7 +156,7 @@ class Widget extends Component {
         }
 
         //Check if "http://" is at begin if not add it
-        if (webURL.indexOf('http://') != 0) {
+        if (webURL.indexOf('http') != 0) {
             webURL = 'http://' + webURL;
         }
 
@@ -168,51 +177,21 @@ class Widget extends Component {
 
     }
 
+    async rmWidget(param) {
+        var uid = this.state.uid[param]; //Get the widget id
 
-    smallWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
+        //Got to path of widget. Under workspace id
+        var path = `workspaces/` + wid + '/widgets';
+        const ref = await firebase.database().ref(path);
 
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-4');
+        //Delete child at widget id
+        ref.child(uid).remove();
 
-    }
+        //this.getWid();
 
-    mediumWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
-
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-8');
-
-    }
-
-    largeWidget = () => {
-        const element = this.myRef.current;
-        console.log(element);
-        const leftDiv = element.parentNode;
-        console.log(leftDiv);
-        const topDiv = leftDiv.parentNode;
-        console.log(topDiv);
-        const outerDiv = topDiv.parentNode;
-        console.log(outerDiv);
-        outerDiv.className = "";
-        outerDiv.classList.add('w-container-out');
-        outerDiv.classList.add('col-md-12');
+        //Re render widgets on deletion  of widget.
+        //Update local widgets.
+        window.location.reload(); //Will change later.
     }
 
     render(){
@@ -230,7 +209,7 @@ class Widget extends Component {
                                 <Then>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -245,7 +224,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'Piazza'}>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -260,8 +239,8 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'GradeScope'}>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
-                                            <div className="w-top-r"><i className="far fa-edit"></i> <span onClick={this.smallWidget} ref={this.myRef}>[]</span> <span onClick={this.mediumWidget} ref={this.myRef}>[ ]</span><span onClick={this.largeWidget} ref={this.myRef}>[ ]</span></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
                                              data-target={'#' + this.state.widgetID[arrayIndex]}>
@@ -276,7 +255,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'AutoGrader'}>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12  w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"
@@ -293,7 +272,7 @@ class Widget extends Component {
                                 <ElseIf condition={this.state.website[arrayIndex] == 'Other'}>
                                     <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12  w-container-out">
                                         <div className="w-top">
-                                            <div className="w-top-l"><i className="far fa-times-circle"></i></div>
+                                            <div onClick={this.rmWidget.bind(this, arrayIndex)} className="w-top-l"><i className="far fa-times-circle"></i></div>
                                             <div className="w-top-r"><i className="far fa-edit"></i> [] [ ] [   ]</div>
                                         </div>
                                         <div id="e" draggable="true" className="w-container" data-toggle="modal"

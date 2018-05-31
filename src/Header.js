@@ -1,7 +1,7 @@
 import './App.css'
+import Widget from './Widget.js';
 import logo from './res/images/Logo.png'
 import googlePhoto from './res/images/testGooglePhoto.jpeg'
-import Widget from './Widget.js';
 import React from 'react';
 
 export const Header = () => {
@@ -30,12 +30,9 @@ export const Header = () => {
                         <div className="col-lg-4 order-lg-3 col-md-4 order-md-3 order-sm-2 order-2 col-7">
                         <div className="addWorkspace ml-auto" data-toggle="modal" data-target="#modal-addWidget">ADD WIDGET</div>
                         <div className="floatRight form-inline googleDiv">
-                            <div className="googleName order-md-1 order-2">Gary Gillespie</div>
+                            <div className="googleName order-md-1 order-2"></div>
                             <div className="googlePhotoWrapper order-md-2 order-1"><img class="googlePhoto" src={googlePhoto}/></div>
                         </div>
-
-
-
 
             </div>
 </div>
@@ -43,11 +40,6 @@ export const Header = () => {
     );
 };
 
-{/*
-export const Widget = () => {
-  return (<div className="Widget">widget1 test</div>);
-}
-*/}
 export const Widget1 = (props) => {
     return (new Widget(props.name));
 }
