@@ -147,6 +147,7 @@ class Widget extends Component {
 
         else if (webURL.indexOf('autograder') !== -1) {
             courseType = "AutoGrader";
+            webURL = "http://www.piazza.com"
         }
         else if (webURL.indexOf('piazza') !== -1) {
             courseType = "Piazza";

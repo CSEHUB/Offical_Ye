@@ -3,8 +3,18 @@ import logo from './res/images/Logo.png'
 import googlePhoto from './res/images/testGooglePhoto.jpeg'
 import Widget from './Widget.js';
 import React from 'react';
+import firebase from 'firebase';
+
+var name = "user";
 
 export const Header = () => {
+
+    firebase.auth().onAuthStateChanged( user => {
+        if (user) {
+            name = firebase.auth().currentUser.email
+        }
+    });
+
     return (
 
 <div className="row">
@@ -30,7 +40,7 @@ export const Header = () => {
                         <div className="col-lg-4 order-lg-3 col-md-4 order-md-3 order-sm-2 order-2 col-7">
                         <div className="addWorkspace ml-auto" data-toggle="modal" data-target="#modal-addWidget">ADD WIDGET</div>
                         <div className="floatRight form-inline googleDiv">
-                            <div className="googleName order-md-1 order-2">Gary Gillespie</div>
+                            <div className="googleName order-md-1 order-2">{name}</div>
                             <div className="googlePhotoWrapper order-md-2 order-1"><img class="googlePhoto" src={googlePhoto}/></div>
                         </div>
 
